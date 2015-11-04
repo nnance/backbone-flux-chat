@@ -6,12 +6,19 @@ import Backbone from 'backbone';
 import ControlButtonGroup from '../../src/components/ControlButtonGroup';
 import call from '../../src/stores/callmodel';
 
+function getDisabledButtons(instance) {
+  return TestUtils
+          .scryRenderedDOMComponentsWithTag(instance, 'button')
+          .map((entry) => React.findDOMNode(entry))
+          .filter((entry) => entry.getAttribute('disabled') !== null);
+}
+
 describe('ControlButtonGroup View', function() {
   let instance;
 
   before(function (done) { bro.newBrowser(done); });
 
-  describe('When displaying all todos', function(){
+  describe('When call state is on hook', function(){
     beforeEach(function() {
       instance = TestUtils.renderIntoDocument(<ControlButtonGroup
         model={call}
@@ -24,10 +31,17 @@ describe('ControlButtonGroup View', function() {
     });
 
     it('should render 3 buttons disabled', function() {
-      const entries = TestUtils
-                        .scryRenderedDOMComponentsWithTag(instance, 'button')
-                        .map((entry) => React.findDOMNode(entry))
-                        .filter((entry) => entry.getAttribute('disabled') !== null);
+      const entries = getDisabledButtons(instance);
+      expect(entries.length).to.equal(3);
+    });
+  });
+
+  describe('when call state is off hook', function() {
+    beforeEach(function(){
+      call.isActive = true;
+    });
+    it('should render 3 buttons enabled', function() {
+      const entries = getDisabledButtons(instance);
       expect(entries.length).to.equal(3);
     });
   });

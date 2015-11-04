@@ -8,8 +8,16 @@ class CallModel extends Backbone.Model {
     }
   }
 
-  isActive() {
+  get isActive() {
     return this.get('currentState') != 'CALL_ONHOOK';
+  }
+
+  set isActive(value) {
+    if (value) {
+      this.set('currentState', 'CALL_OFFHOOK');
+    } else {
+      this.set('currentState', 'CALL_ONHOOK');
+    }
   }
 
 }
