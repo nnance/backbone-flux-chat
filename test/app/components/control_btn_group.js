@@ -34,7 +34,7 @@ describe('Control Button Group View', function() {
   before(function (done) { bro.newBrowser(done); });
 
   describe('When session state is not active', function(){
-    beforeEach(() => instance = render());
+    before(() => instance = render());
 
     it('should render 4 buttons', function() {
       const entries = TestUtils.scryRenderedDOMComponentsWithClass(instance, 'btn');
@@ -54,7 +54,7 @@ describe('Control Button Group View', function() {
   });
 
   describe('when session state is active', function() {
-    beforeEach(function(){
+    before(function(){
       session.isActive = true;
       instance = render();
     });
