@@ -7,7 +7,7 @@ import Header from '../../../src/app/components/header';
 describe('Header View', function() {
   let instance;
 
-  before(function (done) { bro.newBrowser(done); });
+  before((done) => bro.newBrowser(done));
 
   beforeEach(function() {
     instance = TestUtils.renderIntoDocument(<Header/>);

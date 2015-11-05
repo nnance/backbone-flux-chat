@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
-import Backbone from 'backbone';
 import RoomList from '../../../src/home/components/room_list';
 import rooms from '../../../src/stores/room_collection';
 import session from '../../../src/stores/session_model';
@@ -17,7 +16,7 @@ function render() {
 describe('Room List View', function() {
   let instance;
 
-  before(function (done) { bro.newBrowser(done); });
+  before((done) => bro.newBrowser(done));
 
   describe('When room list is empty', function(){
     before(() => instance = render());
@@ -35,7 +34,13 @@ describe('Room List View', function() {
 
   describe('When room list has items', function(){
     before(function() {
-      rooms.add([{title: 'testing'},{title: 'filtered'}]);
+      rooms.add([{
+        id: 1,
+        title: 'testing'
+      },{
+        id: 2,
+        title: 'filtered'
+      }]);
       instance = render();
     });
 
@@ -49,7 +54,7 @@ describe('Room List View', function() {
     it('list item should have testing text', function() {
       const entry = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'li');
       const node = React.findDOMNode(entry[0]);
-      expect(node.innerHTML).to.equal('testing');
+      expect(node.children[0].innerHTML).to.equal('testing');
     });
 
     describe('When filter is set to filtered', function() {

@@ -31,7 +31,7 @@ function getEnableddButtons(instance) {
 describe('Control Button Group View', function() {
   let instance;
 
-  before(function (done) { bro.newBrowser(done); });
+  before((done) => bro.newBrowser(done));
 
   describe('When session state is not active', function(){
     before(() => instance = render());
