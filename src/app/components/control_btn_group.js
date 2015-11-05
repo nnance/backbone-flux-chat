@@ -6,7 +6,7 @@ module.exports = React.createClass({
     const activeCall = this.props.model.isActive;
     return <div>
       <button className="btn btn-default" disabled={activeCall}>Start</button>
-      <button className="btn btn-default" disabled={!activeCall}>Audio</button>
+      <button className="btn btn-default" disabled={!activeCall}>Participate</button>
       <button className="btn btn-default" disabled={!activeCall}>View Only</button>
       <button className="btn btn-default" disabled={!activeCall}>End</button>
     </div>

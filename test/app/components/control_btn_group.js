@@ -3,8 +3,8 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
-import ControlButtonGroup from '../../src/components/ControlButtonGroup';
-import call from '../../src/stores/callmodel';
+import ControlButtonGroup from '../../../src/app/components/control_btn_group';
+import session from '../../../src/stores/session_model';
 
 function getDisabledButtons(instance) {
   return TestUtils
@@ -13,15 +13,15 @@ function getDisabledButtons(instance) {
           .filter((entry) => entry.getAttribute('disabled') !== null);
 }
 
-describe('ControlButtonGroup View', function() {
+describe('control_btn_grp View', function() {
   let instance;
 
   before(function (done) { bro.newBrowser(done); });
 
-  describe('When call state is on hook', function(){
+  describe('When session state is not active', function(){
     beforeEach(function() {
       instance = TestUtils.renderIntoDocument(<ControlButtonGroup
-        model={call}
+        model={session}
       />);
     });
 
@@ -36,9 +36,9 @@ describe('ControlButtonGroup View', function() {
     });
   });
 
-  describe('when call state is off hook', function() {
+  describe('when session state is active', function() {
     beforeEach(function(){
-      call.isActive = true;
+      session.isActive = true;
     });
     it('should render 3 buttons enabled', function() {
       const entries = getDisabledButtons(instance);
