@@ -4,7 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
 import ControlButtonGroup from '../../../src/app/components/control_btn_group';
-import session from '../../../src/stores/session_model';
+import session from '../../../src/stores/session';
 
 function render() {
   return TestUtils.renderIntoDocument(<ControlButtonGroup

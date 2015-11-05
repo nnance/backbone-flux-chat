@@ -8,14 +8,6 @@ class SessionModel extends Backbone.Model {
     }
   }
 
-  get roomFilter() {
-    return this.get('roomFilter') || '';
-  }
-
-  set roomFilter(value) {
-    this.set('roomFilter', value);
-  }
-
   get isActive() {
     return this.get('currentState') != 'idle';
   }

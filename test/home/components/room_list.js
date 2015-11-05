@@ -3,8 +3,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
 import RoomList from '../../../src/home/components/room_list';
-import rooms from '../../../src/stores/room_collection';
-import session from '../../../src/stores/session_model';
+import {rooms, session} from '../../../src/stores/room';
 
 function render() {
   return TestUtils.renderIntoDocument(<RoomList

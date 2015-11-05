@@ -6,7 +6,7 @@ import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
 import RoomItem from '../../../src/home/components/room_item';
-import Room from '../../../src/stores/room_model';
+import {rooms} from '../../../src/stores/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);
@@ -19,7 +19,7 @@ function render(room) {
 
 describe('Room Item View', function() {
   let instance;
-  let room = new Room({id: 1, title: 'Testing'});
+  let room = new rooms.model({id: 1, title: 'Testing'});
 
   before((done) => bro.newBrowser(done));
 
