@@ -22,8 +22,8 @@ describe('Room Store', function() {
     });
   });
 
-  describe('When filtered by title', function() {
-    var entries; 
+  describe('When filtered with a valid filter', function() {
+    var entries;
 
     before(() => entries = rooms.filteredByTitle('filt'));
 
@@ -33,6 +33,16 @@ describe('Room Store', function() {
 
     it('the remaining item should have a title of filtered', function() {
       expect(entries[0].title).to.equal('filtered');
+    });
+  });
+
+  describe('When filtered with an empty filter', function() {
+    var entries;
+
+    before(() => entries = rooms.filteredByTitle(''));
+
+    it('should return 2 items', function() {
+      expect(entries.length).to.equal(2);
     });
   });
 });
