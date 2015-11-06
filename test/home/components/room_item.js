@@ -7,6 +7,7 @@ import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
 import RoomItem from '../../../src/home/components/room_item';
 import {rooms} from '../../../src/stores/room';
+import constants from '../../../src/constants/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);
@@ -32,14 +33,14 @@ describe('Room Item View', function() {
     });
 
     it('should trigger router navigate when clicked', function(){
-      const spy = sinon.spy(Backbone.history, 'navigate');
-      const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'li');
+      const spy = sinon.spy(Backbone, 'trigger');
+      const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'a');
       const node = React.findDOMNode(entries[0]);
 
-      TestUtils.Simulate.click(node.children[0]);
-      Backbone.history.navigate.restore();
+      TestUtils.Simulate.click(node);
+      Backbone.trigger.restore();
 
-      expect(spy).to.have.been.calledWith('#room/1');
+      expect(spy).to.have.been.calledWith(constants.ROOM_SELECTED);
     });
   });
 });
