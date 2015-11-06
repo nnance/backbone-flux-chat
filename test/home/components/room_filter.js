@@ -38,18 +38,22 @@ describe('Room Filter View', function() {
       TestUtils.Simulate.change(node);
 
       Backbone.trigger.restore();
-      expect(spy).to.have.been.calledWith(constants.ROOM_FILTER);
+      expect(spy).to.have.been.calledWithMatch(constants.ROOM_FILTER, {value: 'filtered'});
     });
 
     it('should trigger action on add', function(){
       const spy = sinon.spy(Backbone, 'trigger');
 
-      const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'button');
-      const node = React.findDOMNode(entries[0]);
+      var entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
+      var node = React.findDOMNode(entries[0]);
+      node.value = 'reactjs';
+
+      entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'button');
+      node = React.findDOMNode(entries[0]);
       TestUtils.Simulate.click(node);
 
       Backbone.trigger.restore();
-      expect(spy).to.have.been.calledWith(constants.ROOM_ADD);
+      expect(spy).to.have.been.calledWithMatch(constants.ROOM_ADD, {value: 'reactjs'});
     });
 
   });
