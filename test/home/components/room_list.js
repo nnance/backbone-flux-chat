@@ -33,13 +33,7 @@ describe('Room List View', function() {
 
   describe('When room list has items', function(){
     before(function() {
-      rooms.add([{
-        id: 1,
-        title: 'testing'
-      },{
-        id: 2,
-        title: 'filtered'
-      }]);
+      rooms.add(require('../../stores/data/room').rooms);
       instance = render();
     });
 

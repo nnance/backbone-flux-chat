@@ -20,7 +20,7 @@ function render(room) {
 
 describe('Room Item View', function() {
   let instance;
-  let room = new rooms.model({id: 1, title: 'Testing'});
+  let room = new rooms.model(require('../../stores/data/room').rooms[0]);
 
   before((done) => bro.newBrowser(done));
 
@@ -40,7 +40,7 @@ describe('Room Item View', function() {
       TestUtils.Simulate.click(node);
       Backbone.trigger.restore();
 
-      expect(spy).to.have.been.calledWith(constants.ROOM_SELECTED);
+      expect(spy).to.have.been.calledWith(constants.ROOM_SELECTED, room);
     });
   });
 });

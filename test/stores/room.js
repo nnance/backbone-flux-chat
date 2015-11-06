@@ -5,13 +5,7 @@ describe('Room Store', function() {
   let instance;
 
   before(function() {
-    rooms.add([{
-      id: 1,
-      title: 'testing'
-    },{
-      id: 2,
-      title: 'filtered'
-    }]);
+    rooms.add(require('./data/room').rooms);
   });
 
   after(() => rooms.reset());

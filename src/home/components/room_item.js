@@ -8,7 +8,7 @@ module.exports = React.createClass({
   },
 
   selected: function() {
-    Backbone.trigger(constants.ROOM_SELECTED, {value: this.roomId()});
+    Backbone.trigger(constants.ROOM_SELECTED, this.props.model);
   },
 
   render: function() {
