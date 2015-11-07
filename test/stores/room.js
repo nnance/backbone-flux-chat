@@ -2,11 +2,7 @@ import { expect } from 'chai';
 import {rooms, session} from '../../src/stores/room';
 
 describe('Room Store', function() {
-  let instance;
-
-  before(function() {
-    rooms.add(require('./data/room').rooms);
-  });
+  before(() => rooms.add(require('./data/room').rooms));
 
   after(() => rooms.reset());
 
