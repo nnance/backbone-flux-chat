@@ -30,21 +30,19 @@ describe('Room Filter View', function() {
     });
 
     it('should trigger action on change', function(){
-      const mock = sinon.mock(Backbone);
-      mock.expects('trigger').withArgs(constants.ROOM_FILTER, {value: 'filtered'});
+      const stub = sinon.stub(Backbone,'trigger');
 
       const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
       const node = React.findDOMNode(entries[0]);
       node.value = 'filtered';
       TestUtils.Simulate.change(node);
 
-      Backbone.trigger.verify();
-      mock.restore();
+      stub.restore();
+      expect(stub).to.have.been.calledWithMatch(constants.ROOM_FILTER, {value: 'filtered'});
     });
 
     it('should trigger action on add', function(){
-      const mock = sinon.mock(Backbone);
-      mock.expects('trigger').withArgs(constants.ROOM_ADD, {value: 'reactjs'});
+      const stub = sinon.stub(Backbone, 'trigger');
 
       var entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
       var node = React.findDOMNode(entries[0]);
@@ -54,8 +52,8 @@ describe('Room Filter View', function() {
       node = React.findDOMNode(entries[0]);
       TestUtils.Simulate.click(node);
 
-      Backbone.trigger.verify();
-      mock.restore();
+      stub.restore();
+      expect(stub).to.have.been.calledWithMatch(constants.ROOM_ADD, {value: 'reactjs'});
     });
 
   });

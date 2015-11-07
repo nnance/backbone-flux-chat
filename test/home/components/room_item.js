@@ -33,14 +33,14 @@ describe('Room Item View', function() {
     });
 
     it('should trigger router navigate when clicked', function(){
-      const spy = sinon.spy(Backbone, 'trigger');
+      const stub = sinon.stub(Backbone, 'trigger');
       const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'a');
       const node = React.findDOMNode(entries[0]);
 
       TestUtils.Simulate.click(node);
-      Backbone.trigger.restore();
 
-      expect(spy).to.have.been.calledWith(constants.ROOM_SELECTED, room);
+      stub.restore();
+      expect(stub).to.have.been.calledWith(constants.ROOM_SELECTED, room);
     });
   });
 });

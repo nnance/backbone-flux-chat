@@ -8,6 +8,14 @@ class SessionModel extends Backbone.Model {
   set roomFilter(value) {
     this.set('roomFilter', value);
   }
+
+  get activeRoom() {
+    return this.get('activeRoom');
+  }
+
+  set activeRoom(room) {
+    this.set('activeRoom', room);
+  }
 }
 
 class RoomModel extends Backbone.Model {
