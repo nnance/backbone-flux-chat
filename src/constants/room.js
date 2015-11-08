@@ -1,5 +1,0 @@
-module.exports = {
-  ROOM_FILTER: 'ROOM_FILTER',
-  ROOM_SELECTED: 'ROOM_SELECTED',
-  ROOM_ADD: 'ROOM_ADD',
-};

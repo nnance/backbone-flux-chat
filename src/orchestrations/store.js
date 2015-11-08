@@ -1,12 +1,12 @@
 import Backbone from 'backbone';
-import constants from '../constants/room';
+import actions from '../actions/room';
 import {rooms, session} from '../stores/room';
 
 class RoomOrchestrations extends Backbone.Model {
   initialize() {
-    this.listenTo(Backbone, constants.ROOM_ADD, this.addRoom);
-    this.listenTo(Backbone, constants.ROOM_SELECTED, this.selectRoom);
-    this.listenTo(Backbone, constants.ROOM_FILTER, this.setFilter);
+    this.listenTo(Backbone, actions.ROOM_ADD, this.addRoom);
+    this.listenTo(Backbone, actions.ROOM_SELECTED, this.selectRoom);
+    this.listenTo(Backbone, actions.ROOM_FILTER, this.setFilter);
   }
 
   addRoom(room) {

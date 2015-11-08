@@ -7,7 +7,7 @@ import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
 import RoomFilter from '../../../src/home/components/room_filter';
 import {rooms} from '../../../src/stores/room';
-import constants from '../../../src/constants/room';
+import actions from '../../../src/actions/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);
@@ -30,7 +30,7 @@ describe('Room Filter View', function() {
     });
 
     it('should trigger action on change', function(){
-      const stub = sinon.stub(Backbone,'trigger');
+      const stub = sinon.stub(actions,'setFilter');
 
       const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
       const node = React.findDOMNode(entries[0]);
@@ -38,11 +38,11 @@ describe('Room Filter View', function() {
       TestUtils.Simulate.change(node);
 
       stub.restore();
-      expect(stub).to.have.been.calledWithMatch(constants.ROOM_FILTER, {value: 'filtered'});
+      expect(stub).to.have.been.calledWith('filtered');
     });
 
     it('should trigger action on add', function(){
-      const stub = sinon.stub(Backbone, 'trigger');
+      const stub = sinon.stub(actions, 'addRoom');
 
       var entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
       var node = React.findDOMNode(entries[0]);
@@ -53,7 +53,7 @@ describe('Room Filter View', function() {
       TestUtils.Simulate.click(node);
 
       stub.restore();
-      expect(stub).to.have.been.calledWithMatch(constants.ROOM_ADD, {value: 'reactjs'});
+      expect(stub).to.have.been.calledWith('reactjs');
     });
 
   });

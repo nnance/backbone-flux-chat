@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Backbone from 'backbone';
-import constants from '../../src/constants/room';
+import actions from '../../src/actions/room';
 import orchestrations from '../../src/orchestrations/store';
 import {rooms, session} from '../../src/stores/room';
 
@@ -11,7 +11,7 @@ describe('Room Orchestrations', function() {
   });
 
   describe('When receiving add room message', function() {
-    before(() => Backbone.trigger(constants.ROOM_ADD,{title: 'testing'}));
+    before(() => actions.addRoom('testing'));
 
     after(() => rooms.reset());
 
@@ -21,7 +21,7 @@ describe('Room Orchestrations', function() {
     });
 
     describe('When adding second room', function() {
-      before(() => Backbone.trigger(constants.ROOM_ADD,{title: 'other'}));
+      before(() => actions.addRoom('other'));
 
       it('should have 2 items', function() {
         expect(rooms.length).to.equal(2);
@@ -31,7 +31,7 @@ describe('Room Orchestrations', function() {
 
   describe('When receiving select room message', function() {
     const room = new Backbone.Model({title: 'testing'});
-    before(() => Backbone.trigger(constants.ROOM_SELECTED, {room: room}));
+    before(() => actions.selectRoom(room));
 
     it('should have room selected in session', function(){
       expect(session.activeRoom).to.equal(room);
@@ -39,7 +39,7 @@ describe('Room Orchestrations', function() {
   });
 
   describe('When receiving filter message with initilaized collection', function() {
-    before(() => Backbone.trigger(constants.ROOM_FILTER,{filter: 'filtered'}));
+    before(() => actions.setFilter('filtered'));
 
     it('should have filter set', function(){
       expect(session.roomFilter).to.equal('filtered');

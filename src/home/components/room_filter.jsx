@@ -1,14 +1,14 @@
 import React from 'react';
 import Backbone from 'backbone';
-import constants from '../../constants/room';
+import actions from '../../actions/room';
 
 module.exports = React.createClass({
   filterList: function(event) {
-    Backbone.trigger(constants.ROOM_FILTER, {filter: event.target.value})
+    actions.setFilter(event.target.value);
   },
 
   addRoom: function() {
-    Backbone.trigger(constants.ROOM_ADD, {title: this.refs.filter.value});
+    actions.addRoom(this.refs.filter.value);
   },
 
   render: function() {

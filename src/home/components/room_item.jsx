@@ -1,6 +1,6 @@
 import React from 'react';
 import Backbone from 'backbone';
-import constants from '../../constants/room';
+import actions from '../../actions/room';
 
 module.exports = React.createClass({
   roomId: function() {
@@ -8,7 +8,7 @@ module.exports = React.createClass({
   },
 
   selected: function() {
-    Backbone.trigger(constants.ROOM_SELECTED, {room: this.props.model});
+    actions.selectRoom(this.props.model);
   },
 
   render: function() {
