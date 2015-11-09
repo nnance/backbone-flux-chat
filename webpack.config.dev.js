@@ -21,7 +21,7 @@ module.exports = {
     loaders: [
       {test: /backbone\.js$/, loader: 'imports?define=>false'},
       {test: /\.scss$/, loaders: ['style', 'css', 'autoprefixer', 'sass']},
-      {test: /\.js$/, loader: 'babel', include: path.join(__dirname, 'src')},
+      {test: /\.js|x$/, loader: 'babel', include: path.join(__dirname, 'src')},
       {test: /\.png$/, loader: 'url?limit=8192&mimetype=image/png'},
       {test: /\.jpe?g$/, loader: 'url?limit=8192&mimetype=image/jpg'},
       {test: /\.gif$/, loader: 'url?limit=8192&mimetype=image/gif'},
@@ -31,5 +31,9 @@ module.exports = {
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=8192&mimetype=application/octet-stream'},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'}
     ]
+  },
+  resolve: {
+    // you can now require('file') instead of require('file.coffee')
+    extensions: ['', '.js', '.jsx', '.json'] 
   }
 };

@@ -8,6 +8,7 @@ import Backbone from 'backbone';
 import RoomItem from '../../../src/home/components/room_item';
 import {rooms} from '../../../src/stores/room';
 import actions from '../../../src/actions/room';
+import data from '../../stores/data/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);
@@ -20,7 +21,7 @@ function render(room) {
 
 describe('Room Item View', function() {
   let instance;
-  let room = new rooms.model(require('../../stores/data/room').rooms[0]);
+  let room = new rooms.model(data.rooms[0]);
 
   before((done) => bro.newBrowser(done));
 

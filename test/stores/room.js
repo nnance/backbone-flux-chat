@@ -1,8 +1,9 @@
 import { expect } from 'chai';
 import {rooms, session} from '../../src/stores/room';
+import data from './data/room';
 
 describe('Room Store', function() {
-  before(() => rooms.add(require('./data/room').rooms));
+  before(() => rooms.add(data.rooms));
 
   after(() => rooms.reset());
 

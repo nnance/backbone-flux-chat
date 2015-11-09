@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run build:webpack",
     "start": "node devServer.js",
     "lint": "eslint src",
-    "test": "NODE_ENV=production mocha ./test --recursive",
+    "test": "NODE_ENV=production mocha --recursive",
     "test:watch": "npm run test -- --watch"
   },
   "keywords": [

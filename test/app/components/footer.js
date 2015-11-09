@@ -2,19 +2,19 @@ import { expect } from 'chai';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
-import Header from '../../../src/app/components/header';
+import Footer from '../../../src/app/components/footer';
 
-describe('Header View', function() {
+describe('Footer View', function() {
   let instance;
 
   before((done) => bro.newBrowser(done));
 
   beforeEach(function() {
-    instance = TestUtils.renderIntoDocument(<Header/>);
+    instance = TestUtils.renderIntoDocument(<Footer/>);
   });
 
-  it('should render h1 element', function() {
-    const entries = TestUtils.scryRenderedDOMComponentsWithClass(instance, 'navbar-header');
+  it('should render footer element', function() {
+    const entries = TestUtils.scryRenderedDOMComponentsWithClass(instance, 'footer');
     expect(entries.length).to.equal(1);
   });
 });

@@ -4,6 +4,7 @@ import TestUtils from 'react-addons-test-utils';
 import bro from 'jsdom-test-browser';
 import RoomList from '../../../src/home/components/room_list';
 import {rooms, session} from '../../../src/stores/room';
+import data from '../../stores/data/room';
 
 function render() {
   return TestUtils.renderIntoDocument(<RoomList
@@ -33,7 +34,7 @@ describe('Room List View', function() {
 
   describe('When room list has items', function(){
     before(function() {
-      rooms.add(require('../../stores/data/room').rooms);
+      rooms.add(data.rooms);
       instance = render();
     });
 
