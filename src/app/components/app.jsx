@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Backbone from 'backbone';
 import Header from './header';
 import Footer from './footer';
+import Home from '../../home/components/container';
 
 
 export class App extends Component {
@@ -13,6 +14,7 @@ export class App extends Component {
     return (
       <div>
         <Header />
+        <Home />
         <Footer />
       </div>
     );

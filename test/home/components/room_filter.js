@@ -49,7 +49,7 @@ describe('Room Filter View', function() {
       node.value = 'reactjs';
 
       entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'button');
-      node = React.findDOMNode(entries[0]);
+      node = React.findDOMNode(entries[1]);
       TestUtils.Simulate.click(node);
 
       stub.restore();
