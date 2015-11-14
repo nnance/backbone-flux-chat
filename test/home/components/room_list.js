@@ -1,11 +1,10 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
+import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import ShallowTestUtils from 'react-shallow-testutils';
 import RoomList from '../../../src/home/components/room_list';
-import RoomItem from '../../../src/home/components/room_item';
 import {rooms, session} from '../../../src/stores/room';
 import actions from '../../../src/actions/room';
 import data from '../../stores/data/room';
@@ -14,81 +13,59 @@ let expect = chai.expect;
 chai.use(sinonChai);
 
 function render() {
-  const renderer = TestUtils.createRenderer();
-  renderer.render(<RoomList
+  return TestUtils.renderIntoDocument(<RoomList
     model={session}
     collection={rooms}
   />);
-  return renderer;
 }
 
 describe('Room List View', function() {
+  let instance;
+  jsdom();
 
-  // jsdom();
+  beforeEach(() => instance = render());
+  afterEach(() => React.unmountComponentAtNode(React.findDOMNode(instance).parentNode));
 
   describe('When room list is empty', function(){
-    var renderer, output;
-
-    before(function() {
-      renderer = render();
-      output = renderer.getRenderOutput();
-    });
-
-    it('should have a table', function() {
-      const entries = ShallowTestUtils.findAllWithType(output, 'table');
+    it('should have an unordered list', function() {
+      const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'table');
       expect(entries.length).to.equal(1);
     });
 
-    it('should not have table rows', function() {
-      const entries = ShallowTestUtils.findAllWithType(output, RoomItem);
+    it('should render no list items', function() {
+      const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'tr');
       expect(entries.length).to.equal(0);
     });
   });
 
+
   describe('When room list has items', function(){
-    var renderer, output;
 
-    before(function() {
-      rooms.add(data.rooms);
-      renderer = render();
-      output = renderer.getRenderOutput();
-    });
-
+    before(() => rooms.add(data.rooms));
     after(() => rooms.reset());
 
     it('should render a list of items', function() {
-      const entries = ShallowTestUtils.findAllWithType(output, RoomItem);
+      const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'tr');
       expect(entries.length).to.equal(2);
     });
 
     it('list item should have testing text', function() {
-      const entry = ShallowTestUtils.findAllWithType(output, RoomItem);
-      expect(entry[0].props.model.attributes.title).to.equal('testing');
+      const entry = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'tr');
+      const node = React.findDOMNode(entry[0]);
+      expect(node.children[1].children[0].innerHTML).to.equal('testing');
     });
 
     describe('When filter is set to filtered', function() {
-      before(function() {
-        session.roomFilter = 'filtered';
-        ShallowTestUtils.getMountedInstance(renderer).forceUpdate();
-        output = renderer.getRenderOutput();
-      });
-
+      before(() => session.roomFilter = 'filtered');
       after(() => session.roomFilter = '');
 
       it('should render only 1 item', function() {
-        const entries = ShallowTestUtils.findAllWithType(output, RoomItem);
+        const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'tr');
         expect(entries.length).to.equal(1);
       });
-
-      it('list item should have filtered text', function() {
-        const entry = ShallowTestUtils.findAllWithType(output, RoomItem);
-        expect(entry[0].props.model.attributes.title).to.equal('filtered');
-      });
     });
-/*
-    describe('When a row is clicked', function() {
-      before(() => instance = render());
 
+    describe('When a row is clicked', function() {
       it('should trigger router navigate when clicked', function(){
         const stub = sinon.stub(actions, 'selectRoom');
         const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'a');
@@ -100,6 +77,5 @@ describe('Room List View', function() {
         expect(stub).to.have.been.calledWith(rooms.at(0));
       });
     });
-  */
   });
 });
