@@ -1,13 +1,12 @@
 import { expect } from 'chai';
+import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import bro from 'jsdom-test-browser';
 import Footer from '../../../src/app/components/footer';
 
 describe('Footer View', function() {
   let instance;
-
-  before((done) => bro.newBrowser(done));
+  jsdom();
 
   beforeEach(function() {
     instance = TestUtils.renderIntoDocument(<Footer/>);

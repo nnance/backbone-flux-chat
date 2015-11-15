@@ -13,17 +13,20 @@ let expect = chai.expect;
 chai.use(sinonChai);
 
 function render() {
-  return TestUtils.renderIntoDocument(<RoomList
-    model={session}
-    collection={rooms}
-  />);
+  return
 }
 
 describe('Room List View', function() {
   let instance;
   jsdom();
 
-  beforeEach(() => instance = render());
+  beforeEach(function() {
+    instance = TestUtils.renderIntoDocument(<RoomList
+      model={session}
+      collection={rooms}
+    />);
+  });
+  
   afterEach(() => React.unmountComponentAtNode(React.findDOMNode(instance).parentNode));
 
   describe('When room list is empty', function(){

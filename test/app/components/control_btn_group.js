@@ -1,7 +1,7 @@
 import { expect } from 'chai';
+import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
 import ControlButtonGroup from '../../../src/app/components/control_btn_group';
 import session from '../../../src/stores/session';
@@ -30,8 +30,7 @@ function getEnableddButtons(instance) {
 
 describe('Control Button Group View', function() {
   let instance;
-
-  before((done) => bro.newBrowser(done));
+  jsdom();
 
   describe('When session state is not active', function(){
     before(() => instance = render());

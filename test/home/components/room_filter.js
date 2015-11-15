@@ -1,9 +1,9 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
+import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import bro from 'jsdom-test-browser';
 import Backbone from 'backbone';
 import RoomFilter from '../../../src/home/components/room_filter';
 import {rooms} from '../../../src/stores/room';
@@ -18,8 +18,7 @@ function render(room) {
 
 describe('Room Filter View', function() {
   let instance;
-
-  before((done) => bro.newBrowser(done));
+  jsdom();
 
   describe('With no filter set', function(){
     before(() => instance = render());

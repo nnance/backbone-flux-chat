@@ -1,13 +1,12 @@
 import { expect } from 'chai';
+import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import bro from 'jsdom-test-browser';
 import Header from '../../../src/app/components/header';
 
 describe('Header View', function() {
   let instance;
-
-  before((done) => bro.newBrowser(done));
+  jsdom();
 
   beforeEach(function() {
     instance = TestUtils.renderIntoDocument(<Header/>);
