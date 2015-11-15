@@ -26,7 +26,7 @@ describe('Room List View', function() {
       collection={rooms}
     />);
   });
-  
+
   afterEach(() => React.unmountComponentAtNode(React.findDOMNode(instance).parentNode));
 
   describe('When room list is empty', function(){

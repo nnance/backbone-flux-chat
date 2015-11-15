@@ -1,5 +1,8 @@
 import React from 'react';
 import Filter from './room_filter';
+import RoomList from './room_list';
+import {rooms, session} from '../../../src/stores/room';
+
 
 module.exports = React.createClass({
 
@@ -15,6 +18,7 @@ module.exports = React.createClass({
                 </div>
                 <div className="ibox-content">
                   <Filter/>
+                  <RoomList model={session} collection={rooms}/>
                 </div>
               </div>
             </div>

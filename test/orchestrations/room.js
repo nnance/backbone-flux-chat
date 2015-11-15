@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Backbone from 'backbone';
 import actions from '../../src/actions/room';
-import orchestrations from '../../src/orchestrations/store';
+import orchestrations from '../../src/orchestrations/room';
 import {rooms, session} from '../../src/stores/room';
 
 describe('Room Orchestrations', function() {

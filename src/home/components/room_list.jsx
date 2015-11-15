@@ -1,9 +1,11 @@
 import React from 'react';
 import Backbone from 'backbone';
-import ReactBackbone from 'react.backbone';
+import backboneMixin from 'backbone-react-component';
 import RoomItem from './room_item';
 
-module.exports = React.createBackboneClass({
+module.exports = React.createClass({
+  mixins: [backboneMixin],
+
   render: function() {
     const filter = this.props.model.roomFilter;
     return <div className="project-list">
