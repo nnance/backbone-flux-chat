@@ -1,5 +1,4 @@
 import React from 'react';
-import Backbone from 'backbone';
 import backboneMixin from 'backbone-react-component';
 import actions from '../../actions/room';
 
