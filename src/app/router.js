@@ -1,10 +1,10 @@
 import Backbone from 'backbone';
 import BackboneRouteControl from 'backbone-route-control';
-import app from '../orchestrations/app';
-import room from '../orchestrations/room';
+import app from '../controllers/app';
+import room from '../controllers/room';
 
 
-class Router extends BackboneRouteControl {
+class Body extends BackboneRouteControl {
   routes() {
     return {
       '': 'app#showHome',
@@ -13,7 +13,7 @@ class Router extends BackboneRouteControl {
   }
 }
 
-module.exports = new Router({
+module.exports = new Body({
   controllers: {
     app: app,
     room: room
