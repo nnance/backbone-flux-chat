@@ -3,7 +3,7 @@ import jsdom from 'mocha-jsdom';
 import React from 'react';
 import Backbone from 'backbone';
 import TestUtils from 'react-addons-test-utils';
-import Router from '../../../src/app/components/router';
+import Body from '../../../src/app/components/body';
 import router from '../../../src/stores/router';
 
 describe('Router View', function() {
@@ -11,7 +11,7 @@ describe('Router View', function() {
   jsdom();
 
   beforeEach(function() {
-    instance = TestUtils.renderIntoDocument(<Router model={router}/>);
+    instance = TestUtils.renderIntoDocument(<Body model={router}/>);
   });
 
   afterEach(() => React.unmountComponentAtNode(React.findDOMNode(instance).parentNode));

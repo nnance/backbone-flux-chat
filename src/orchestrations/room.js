@@ -4,17 +4,11 @@ import {rooms, session} from '../stores/room';
 import router from '../stores/router';
 import Detail from '../home/components/detail';
 
-class RoomOrchestrations extends Backbone.Router {
-  routes() {
-    return {
-      'detail': 'showDetail'
-    }
-  }
-
-  initialize() {
-    this.listenTo(Backbone, actions.ROOM_ADD, this.addRoom);
-    this.listenTo(Backbone, actions.ROOM_SELECTED, this.selectRoom);
-    this.listenTo(Backbone, actions.ROOM_FILTER, this.setFilter);
+class RoomController {
+  constructor() {
+    Backbone.on(actions.ROOM_ADD, this.addRoom, this);
+    Backbone.on(actions.ROOM_SELECTED, this.selectRoom, this);
+    Backbone.on(actions.ROOM_FILTER, this.setFilter, this);
   }
 
   addRoom(room) {
@@ -35,4 +29,4 @@ class RoomOrchestrations extends Backbone.Router {
   }
 }
 
-module.exports = new RoomOrchestrations();
+module.exports = new RoomController();

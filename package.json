@@ -24,6 +24,7 @@
     "babel-eslint": "^3.1.9",
     "babel-loader": "^5.1.2",
     "babel-plugin-react-transform": "^1.1.1",
+    "backbone-route-control": "^0.1.0",
     "bootstrap-sass": "^3.3.5",
     "chai": "^3.4.0",
     "css-loader": "^0.21.0",

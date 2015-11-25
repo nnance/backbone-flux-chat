@@ -3,19 +3,13 @@ import actions from '../actions/app';
 import router from '../stores/router';
 import Home from '../home/components/container';
 
-class AppOrchestrations extends Backbone.Router {
-  routes() {
-    return {
-      '': 'showHome'
-    }
-  }
 
-  initialize() {
-    this.listenTo(Backbone, actions.APP_STARTED, this.startApp);
+class AppController {
+  constructor() {
+    Backbone.on(actions.APP_STARTED, this.startApp, this);
   }
 
   startApp(room) {
-    router.visibleComponent = Home;
     Backbone.history.start({ pushState: true });
   }
 
@@ -25,4 +19,4 @@ class AppOrchestrations extends Backbone.Router {
 
 }
 
-module.exports = new AppOrchestrations();
+module.exports = new AppController();
