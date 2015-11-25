@@ -14,10 +14,10 @@ module.exports = React.createClass({
           <div className="navbar-collapse collapse" id="navbar">
               <ul className="nav navbar-nav">
                   <li className="active">
-                      <a aria-expanded="false" role="button" href="home.html"> Home</a>
+                      <a aria-expanded="false" role="button" href="#"> Home</a>
                   </li>
                   <li>
-                      <a aria-expanded="false" role="button" href="rooms.html"> Rooms</a>
+                      <a aria-expanded="false" role="button" href="#detail"> Rooms</a>
                   </li>
               </ul>
               <ul className="nav navbar-top-links navbar-right">
