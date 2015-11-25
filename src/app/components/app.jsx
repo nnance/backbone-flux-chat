@@ -6,6 +6,7 @@ import Router from './router';
 import actions from '../../actions/app';
 import app from '../../orchestrations/app';
 import room from '../../orchestrations/room';
+import router from '../../stores/router';
 
 export class App extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ export class App extends Component {
     return (
       <div>
         <Header />
-        <Router />
+        <Router model={router}/>
         <Footer />
       </div>
     );

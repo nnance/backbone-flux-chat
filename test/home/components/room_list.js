@@ -12,10 +12,6 @@ import data from '../../stores/data/room';
 let expect = chai.expect;
 chai.use(sinonChai);
 
-function render() {
-  return
-}
-
 describe('Room List View', function() {
   let instance;
   jsdom();

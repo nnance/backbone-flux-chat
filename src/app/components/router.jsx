@@ -1,19 +1,8 @@
 import React from 'react';
-import backboneReact from 'backbone-react-component';
-import router from '../../stores/router';
+import backboneMixin from 'backbone-react-component';
 
 module.exports = React.createClass({
-  componentWillMount: function() {
-    backboneReact.on(this, {
-      models: {
-        router: router
-      }
-    });
-  },
-
-  componentWillUnmount: function() {
-    backboneReact.off(this);
-  },
+  mixins: [backboneMixin],
 
   render: function() {
     var EmptyDiv = React.createClass({
@@ -21,7 +10,7 @@ module.exports = React.createClass({
         return <div/>
       }
     });
-    var Component = this.state.router.visibleComponent || EmptyDiv;
+    var Component = this.props.model && this.props.model.visibleComponent || EmptyDiv;
 
     return <Component />
   }
