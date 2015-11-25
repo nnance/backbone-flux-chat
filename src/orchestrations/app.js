@@ -2,13 +2,11 @@ import Backbone from 'backbone';
 import actions from '../actions/app';
 import router from '../stores/router';
 import Home from '../home/components/container';
-import Detail from '../home/components/detail';
 
 class AppOrchestrations extends Backbone.Router {
   routes() {
     return {
-      '': 'showHome',
-      'detail': 'showDetail'
+      '': 'showHome'
     }
   }
 
@@ -18,15 +16,11 @@ class AppOrchestrations extends Backbone.Router {
 
   startApp(room) {
     router.visibleComponent = Home;
-    Backbone.history.start();
+    Backbone.history.start({ pushState: true });
   }
 
   showHome() {
     router.visibleComponent = Home;
-  }
-
-  showDetail() {
-    router.visibleComponent = Detail;
   }
 
 }

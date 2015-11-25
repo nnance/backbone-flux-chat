@@ -9,7 +9,8 @@ module.exports = React.createClass({
     return this.props.model.id;
   },
 
-  selected: function() {
+  selected: function(e) {
+    e.preventDefault();
     actions.selectRoom(this.props.model);
   },
 
