@@ -1,5 +1,4 @@
 import React from 'react';
-import Backbone from 'backbone';
 import actions from '../../actions/room';
 
 module.exports = React.createClass({

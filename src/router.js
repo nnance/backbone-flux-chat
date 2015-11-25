@@ -1,7 +1,6 @@
-import Backbone from 'backbone';
 import BackboneRouteControl from 'backbone-route-control';
-import app from '../controllers/app';
-import room from '../controllers/room';
+import app from './controllers/app';
+import room from './controllers/room';
 
 
 class Body extends BackboneRouteControl {

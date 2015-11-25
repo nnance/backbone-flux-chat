@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Backbone from 'backbone';
 import Header from './header';
 import Footer from './footer';
 import Body from './body';
