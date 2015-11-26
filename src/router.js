@@ -1,20 +1,13 @@
-import BackboneRouteControl from 'backbone-route-control';
+import Backbone from 'backbone';
 import app from './controllers/app';
 import room from './controllers/room';
 
 
-class Body extends BackboneRouteControl {
-  routes() {
-    return {
-      '': 'app#showHome',
-      'detail': 'room#showDetail'
-    }
+class Router extends Backbone.Router {
+  initialize() {
+    this.route('', '', app.showHome.bind(app));
+    this.route('detail', 'room#showDetail', room.showDetail.bind(room));
   }
 }
 
-module.exports = new Body({
-  controllers: {
-    app: app,
-    room: room
-  }
-});
+module.exports = new Router();
