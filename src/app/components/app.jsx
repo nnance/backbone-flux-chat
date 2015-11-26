@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import Body from './body';
 import actions from '../../actions/app';
 import router from '../../stores/router';
 
-export class App extends Component {
+
+export default class App extends React.Component {
   componentDidMount() {
     actions.appStarted();
   }

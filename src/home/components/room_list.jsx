@@ -1,20 +1,23 @@
 import React from 'react';
-import backboneMixin from 'backbone-react-component';
+import BackboneReact from '../../lib/backbonereact';
 import RoomItem from './room_item';
 
-module.exports = React.createClass({
-  mixins: [backboneMixin],
+class RoomList extends React.Component {
 
-  render: function() {
+  render() {
     const filter = this.props.model.roomFilter;
-    return <div className="project-list">
-      <table className="table table-hover">
-        <tbody>
-          {this.props.collection.filteredByTitle(filter).map((room) =>
-            <RoomItem model={room} />
-          )}
-        </tbody>
-      </table>
-    </div>
+    return (
+      <div className="project-list">
+        <table className="table table-hover">
+          <tbody>
+            {this.props.collection.filteredByTitle(filter).map((room) =>
+              <RoomItem model={room} />
+            )}
+          </tbody>
+        </table>
+      </div>
+    );
   }
-});
+}
+
+export default BackboneReact(RoomList);

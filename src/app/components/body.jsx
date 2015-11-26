@@ -1,10 +1,9 @@
 import React from 'react';
-import backboneMixin from 'backbone-react-component';
+import BackboneReact from '../../lib/backbonereact';
 
-module.exports = React.createClass({
-  mixins: [backboneMixin],
 
-  render: function() {
+class Body extends React.Component {
+  render() {
     var EmptyDiv = React.createClass({
       render: function() {
         return <div/>
@@ -14,4 +13,6 @@ module.exports = React.createClass({
 
     return <Component />
   }
-});
+}
+
+export default BackboneReact(Body);
