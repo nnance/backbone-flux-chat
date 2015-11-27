@@ -1,24 +1,23 @@
 import React from 'react';
 
-var events = 'add remove reset change';
-
 var BackboneReact = ComposedComponent => class extends React.Component {
   componentDidMount() {
-    if (this.props.model) {
-      this.props.model.on(events, () => this.forceUpdate(), this);
-    }
-    if (this.props.collection) {
-      this.props.collection.on(events, () => this.forceUpdate(), this);
-    }
+    [this.props.model, this.props.collection].forEach((store) => {
+      if (store) {
+        store.on('add remove reset change', () => this.forceUpdate(), this);
+        store.on('sync request', () => this.setState({isRequesting: true, hasErrors: false}), this);
+        store.on('error', (store, err) => this.setState({isRequesting: false, hasErrors: true, error: err}), this);
+        store.on('sync', () => this.setState({isRequesting: false, hasErrors: false}), this);
+      }
+    });
   }
 
   componentWillUnmount() {
-    if (this.props.model) {
-      this.props.model.off(null, null, this);
-    }
-    if (this.props.collection) {
-      this.props.collection.off(null, null, this);
-    }
+    [this.props.model, this.props.collection].forEach((store) => {
+      if (store) {
+        store.off(null, null, this);
+      }
+    });
   }
 
   render() {
