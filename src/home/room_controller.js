@@ -2,7 +2,8 @@ import Backbone from 'backbone';
 import actions from '../actions/room';
 import {rooms, session} from '../stores/room';
 import router from '../stores/router';
-import Detail from '../home/components/detail';
+import Home from '../home/components/container';
+import Detail from './components/detail';
 
 class RoomController {
   constructor() {
@@ -22,6 +23,10 @@ class RoomController {
 
   setFilter(msg) {
     session.roomFilter = msg.filter;
+  }
+
+  showHome() {
+    router.visibleComponent = Home;
   }
 
   showDetail() {

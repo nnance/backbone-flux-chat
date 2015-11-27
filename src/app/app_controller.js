@@ -1,7 +1,5 @@
 import Backbone from 'backbone';
 import actions from '../actions/app';
-import router from '../stores/router';
-import Home from '../home/components/container';
 
 
 class AppController {
@@ -9,12 +7,12 @@ class AppController {
     Backbone.on(actions.APP_STARTED, this.startApp, this);
   }
 
-  startApp() {
-    Backbone.history.start({ pushState: true });
+  setRouter(router) {
+    this._router = router;
   }
 
-  showHome() {
-    router.visibleComponent = Home;
+  startApp() {
+    Backbone.history.start({ pushState: true });
   }
 
 }
