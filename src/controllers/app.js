@@ -9,7 +9,7 @@ class AppController {
     Backbone.on(actions.APP_STARTED, this.startApp, this);
   }
 
-  startApp(room) {
+  startApp() {
     Backbone.history.start({ pushState: true });
   }
 

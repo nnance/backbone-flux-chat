@@ -5,7 +5,7 @@ class SessionModel extends Backbone.Model {
   get defaults() {
     return {
       currentState: 'idle'
-    }
+    };
   }
 
   get isActive() {

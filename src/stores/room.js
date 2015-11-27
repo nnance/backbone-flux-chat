@@ -46,4 +46,4 @@ class RoomCollection extends Backbone.Collection {
 module.exports = {
   session: new SessionModel(),
   rooms: new RoomCollection()
-}
+};

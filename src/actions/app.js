@@ -5,7 +5,7 @@ const appStarted = 'APP_STARTED';
 module.exports = {
   APP_STARTED: appStarted,
 
-  appStarted: function(value) {
+  appStarted: function() {
     Backbone.trigger(appStarted);
   }
 
