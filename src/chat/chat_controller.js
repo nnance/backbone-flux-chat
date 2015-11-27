@@ -2,14 +2,13 @@ import Backbone from 'backbone';
 import actions from '../actions/room';
 import {rooms, session} from '../stores/room';
 import router from '../stores/router';
-import Home from './components/container';
-import Detail from './components/detail';
+import Container from './components/container';
 
-class RoomController {
+class ChatController {
+  /*
   constructor() {
     Backbone.on(actions.ROOM_ADD, this.addRoom, this);
     Backbone.on(actions.ROOM_SELECTED, this.selectRoom, this);
-    Backbone.on(actions.ROOM_START_CHAT, this.startChat, this);
     Backbone.on(actions.ROOM_FILTER, this.setFilter, this);
   }
 
@@ -22,22 +21,14 @@ class RoomController {
     Backbone.history.navigate('detail', {trigger: true});
   }
 
-  startChat(msg) {
-    session.activeRoom = msg.room;
-    Backbone.history.navigate('chat', {trigger: true});
-  }
-
   setFilter(msg) {
     session.roomFilter = msg.filter;
   }
-
-  showHome() {
-    router.visibleComponent = Home;
+*/
+  showChat() {
+    router.visibleComponent = Container;
   }
 
-  showDetail() {
-    router.visibleComponent = Detail;
-  }
 }
 
-module.exports = new RoomController();
+module.exports = new ChatController();

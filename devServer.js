@@ -13,7 +13,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-app.use(express.static('design'));
+app.use('/design', express.static('design'));
+app.use('/img', express.static('img'));
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
