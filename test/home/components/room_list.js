@@ -68,7 +68,7 @@ describe('Room List View', function() {
       it('should trigger router navigate when clicked', function(){
         const stub = sinon.stub(actions, 'selectRoom');
         const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'a');
-        const node = React.findDOMNode(entries[2]);
+        const node = React.findDOMNode(entries[1]);
 
         TestUtils.Simulate.click(node);
 

@@ -1,12 +1,12 @@
 import Backbone from 'backbone';
 
-const appStarted = 'APP_STARTED';
+const showComponent = 'APP_SHOW_COMPONENT';
 
 module.exports = {
-  APP_STARTED: appStarted,
+  APP_SHOW_COMPONENT: showComponent,
 
-  appStarted: function() {
-    Backbone.trigger(appStarted);
+  showComponent: function(component) {
+    Backbone.trigger(showComponent, component);
   }
 
 };

@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 import actions from '../actions/room';
+import app from '../actions/app';
 import {rooms, session} from '../stores/room';
-import router from '../stores/router';
 import Home from './components/container';
 import Detail from './components/detail';
 
@@ -32,11 +32,11 @@ class RoomController {
   }
 
   showHome() {
-    router.visibleComponent = Home;
+    app.showComponent(Home);
   }
 
   showDetail() {
-    router.visibleComponent = Detail;
+    app.showComponent(Detail);
   }
 }
 

@@ -1,18 +1,9 @@
 import React from 'react';
-import BackboneReact from '../../lib/backbonereact';
 
 
-class Body extends React.Component {
+export default class Body extends React.Component {
   render() {
-    var EmptyDiv = React.createClass({
-      render: function() {
-        return <div/>
-      }
-    });
-    var Component = this.props.model && this.props.model.visibleComponent || EmptyDiv;
-
+    var Component = this.props && this.props.visibleComponent ? this.props.visibleComponent : () => <div/>;
     return <Component />
   }
 }
-
-export default BackboneReact(Body);
