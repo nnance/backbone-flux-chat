@@ -12,6 +12,10 @@ class AppController {
     Backbone.on(actions.APP_SHOW_COMPONENT, this.showComponent, this);
   }
 
+  remove() {
+    Backbone.off(null, null, this);
+  }
+
   showApp() {
     this.appComponent = ReactDOM.render(<App />, document.getElementById('root'));
     Backbone.history.start({ pushState: true });

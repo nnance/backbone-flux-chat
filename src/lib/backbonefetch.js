@@ -1,3 +1,5 @@
+import Backbone from 'backbone';
+
 var defaults = function(obj, source) {
   for (var prop in source) {
     if (obj[prop] === undefined) obj[prop] = source[prop];
@@ -28,25 +30,21 @@ var json = function(response) {
   return response.json();
 };
 
-export default function(Backbone) {
+Backbone.ajax = function(options) {
+  if (options.type === 'GET' && typeof options.data === 'object') {
+    options.url = stringifyGETParams(options.url, options.data);
+  }
 
-  Backbone.ajax = function(options) {
-    if (options.type === 'GET' && typeof options.data === 'object') {
-      options.url = stringifyGETParams(options.url, options.data);
-    }
-
-    return fetch(options.url, defaults(options, {
-      method: options.type,
-      headers: defaults(options.headers || {}, {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }),
-      body: options.data
-    }))
-    .then(status)
-    .then(json)
-    .then(options.success)
-    .catch(options.error);
-  };
-
-}
+  return fetch(options.url, defaults(options, {
+    method: options.type,
+    headers: defaults(options.headers || {}, {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }),
+    body: options.data
+  }))
+  .then(status)
+  .then(json)
+  .then(options.success)
+  .catch(options.error);
+};

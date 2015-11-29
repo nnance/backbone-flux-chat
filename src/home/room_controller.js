@@ -13,6 +13,10 @@ class RoomController {
     Backbone.on(actions.ROOM_FILTER, this.setFilter, this);
   }
 
+  remove() {
+    Backbone.off(null, null, this);
+  }
+
   addRoom(room) {
     rooms.add(room);
   }
