@@ -1,6 +1,11 @@
+import Backbone from 'backbone';
+require('babel-polyfill');
+require('./router');
+import BackboneFetch from './lib/backbonefetch';
 import app from './app/app_controller';
-import router from './router';
+
+// styles
 import '../styles/index.scss';
 
-app.router = router;
+BackboneFetch(Backbone);
 app.showApp();

@@ -31,7 +31,7 @@ class RoomCollection extends Backbone.Collection {
   }
 
   get url() {
-    return 'api/rooms';
+    return '/api/rooms';
   }
 
   filteredByTitle(filter) {

@@ -33,6 +33,7 @@ class RoomController {
 
   showHome() {
     app.showComponent(Home);
+    rooms.fetch();
   }
 
   showDetail() {
