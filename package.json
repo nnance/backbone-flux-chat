@@ -1,7 +1,7 @@
 {
-  "name": "backbone-flux-state-manager-example",
+  "name": "backbone-flux-chat",
   "version": "1.0.0",
-  "description": "Example application to show state manager pattern",
+  "description": "Example application to show Backbone / React in ES6",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
