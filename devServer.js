@@ -16,6 +16,9 @@ app.use(require('webpack-hot-middleware')(compiler));
 app.use('/design', express.static('design'));
 app.use('/img', express.static('img'));
 
+// load dev routes for dev end points
+require('./devRoutes')(app);
+
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
