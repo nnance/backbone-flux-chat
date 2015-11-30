@@ -27,7 +27,7 @@ class RoomItem extends React.Component {
           <span className="label label-primary">Active</span>
         </td>
         <td className="project-title">
-          <a href="project_detail.html">{this.props.model.title}</a>
+          <a href="#" onClick={this.view.bind(this)}>{this.props.model.title}</a>
           <br/>
           <small>Created 14.08.2014</small>
         </td>

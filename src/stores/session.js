@@ -20,6 +20,14 @@ class SessionModel extends Backbone.Model {
     }
   }
 
+  set activeRoom(room) {
+    this.set('activeRoom', room);
+  }
+
+  get activeRoom() {
+    return this.get('activeRoom');
+  }
+
 }
 
 module.exports = new SessionModel();

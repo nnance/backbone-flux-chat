@@ -1,5 +1,5 @@
 import React from 'react';
-
+import session from '../../stores/session';
 
 export default class Detail extends React.Component {
 
@@ -16,7 +16,7 @@ export default class Detail extends React.Component {
                               <div className="col-lg-12">
                                   <div className="m-b-md">
                                       <a href="#" className="btn btn-white btn-xs pull-right">Edit project</a>
-                                      <h2>Contract with Zender Company</h2>
+                                      <h2>{session.activeRoom.title}</h2>
                                   </div>
                                   <dl className="dl-horizontal">
                                       <dt>Status:</dt> <dd><span className="label label-primary">Active</span></dd>
