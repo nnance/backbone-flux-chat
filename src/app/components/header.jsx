@@ -1,7 +1,18 @@
 import React from 'react';
-
+import room_actions from '../../actions/room';
+import user_actions from '../../actions/user';
 
 export default class Header extends React.Component {
+  showRooms(e) {
+    e.preventDefault();
+    room_actions.showRooms();
+  }
+
+  showUsers(e) {
+    e.preventDefault();
+    user_actions.showUsers();
+  }
+
   render() {
     return (
       <div className="row border-bottom white-bg">
@@ -14,11 +25,11 @@ export default class Header extends React.Component {
             </div>
             <div className="navbar-collapse collapse" id="navbar">
                 <ul className="nav navbar-nav">
-                    <li className="active">
-                        <a aria-expanded="false" role="button" href="#"> Home</a>
+                    <li>
+                        <a aria-expanded="false" role="button" href="#" onClick={this.showRooms.bind(this)}> Rooms</a>
                     </li>
                     <li>
-                        <a aria-expanded="false" role="button" href="#detail"> Rooms</a>
+                        <a aria-expanded="false" role="button" href="#" onClick={this.showUsers.bind(this)}> Users</a>
                     </li>
                 </ul>
                 <ul className="nav navbar-top-links navbar-right">

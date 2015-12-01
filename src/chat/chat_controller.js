@@ -4,6 +4,7 @@ import session from '../stores/session';
 import { users } from '../stores/user';
 import { chats } from '../stores/chat';
 
+
 class ChatController {
   showChat() {
     app.showComponent(Container);

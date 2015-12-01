@@ -13,6 +13,14 @@ class UserModel extends Backbone.Model {
   get imageURL() {
     return this.get('imageURL');
   }
+
+  get title() {
+    return this.get('title');
+  }
+
+  get company() {
+    return this.get('company');
+  }
 }
 
 class UserCollection extends Backbone.Collection {

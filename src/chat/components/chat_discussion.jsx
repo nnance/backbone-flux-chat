@@ -8,7 +8,7 @@ class ChatDiscussion extends React.Component {
     return (
       <div className="chat-discussion">
         {this.props.collection.map((chat, index) =>
-          <div className={index % 2 ? 'chat-message right' : 'chat-message left'}>
+          <div className={'chat-message ' + (index % 2 ? 'right' : 'left')}>
               <img className="message-avatar" src={chat.user.imageURL} alt=""/>
               <div className="message">
                   <a className="message-author" href="#">{chat.user.name}</a>

@@ -8,6 +8,7 @@ import Detail from './components/detail';
 
 class RoomController {
   constructor() {
+    Backbone.on(actions.SHOW_ROOMS, this.showRooms, this);
     Backbone.on(actions.ROOM_ADD, this.addRoom, this);
     Backbone.on(actions.ROOM_SELECTED, this.selectRoom, this);
     Backbone.on(actions.ROOM_START_CHAT, this.startChat, this);
@@ -20,6 +21,10 @@ class RoomController {
 
   addRoom(attributes) {
     rooms.create(attributes);
+  }
+
+  showRooms() {
+    Backbone.history.navigate('', {trigger: true});
   }
 
   selectRoom(msg) {
