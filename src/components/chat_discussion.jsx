@@ -1,5 +1,5 @@
 import React from 'react';
-import BackboneReact from '../../lib/backbonereact';
+import BackboneReact from '../lib/backbonereact';
 
 
 class ChatDiscussion extends React.Component {
