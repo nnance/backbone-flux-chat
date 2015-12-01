@@ -1,6 +1,8 @@
 import React from 'react';
+import BackboneReact from '../../lib/backbonereact';
 
-export default class ChatUsers extends React.Component {
+
+class ChatUsers extends React.Component {
 
   render() {
     return (
@@ -20,3 +22,5 @@ export default class ChatUsers extends React.Component {
     );
   }
 }
+
+export default BackboneReact(ChatUsers);

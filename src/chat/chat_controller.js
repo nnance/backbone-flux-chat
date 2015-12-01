@@ -6,11 +6,9 @@ import { chats } from '../stores/chat';
 
 class ChatController {
   showChat() {
-    // app.showComponent(Container);
+    app.showComponent(Container);
     users.fetch();
-    chats
-      .fetch({data: {room: session.activeRoom.id}})
-      .then(() => app.showComponent(Container));
+    chats.fetch({data: {room: session.activeRoom.id}});
   }
 
 }

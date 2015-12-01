@@ -1,6 +1,8 @@
 import React from 'react';
+import BackboneReact from '../../lib/backbonereact';
 
-export default class ChatDiscussion extends React.Component {
+
+class ChatDiscussion extends React.Component {
 
   render() {
     return (
@@ -19,3 +21,5 @@ export default class ChatDiscussion extends React.Component {
     );
   }
 }
+
+export default BackboneReact(ChatDiscussion);
