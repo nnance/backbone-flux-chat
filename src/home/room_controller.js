@@ -17,8 +17,8 @@ class RoomController {
     Backbone.off(null, null, this);
   }
 
-  addRoom(room) {
-    rooms.add(room);
+  addRoom(attributes) {
+    rooms.create(attributes);
   }
 
   selectRoom(msg) {

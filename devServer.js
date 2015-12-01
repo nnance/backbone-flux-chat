@@ -13,6 +13,8 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.use(require('body-parser').json());
+
 app.use('/design', express.static('design'));
 app.use('/img', express.static('img'));
 
