@@ -7,6 +7,6 @@ module.exports = {
 
   showUsers: function() {
     Backbone.trigger(showUsers);
-  },
+  }
 
 };
