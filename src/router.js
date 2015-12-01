@@ -1,5 +1,5 @@
 import Backbone from 'backbone';
-import room from './home/room_controller';
+import room from './room/room_controller';
 import user from './user/user_controller';
 import chat from './chat/chat_controller';
 

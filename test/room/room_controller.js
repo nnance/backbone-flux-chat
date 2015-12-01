@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import Backbone from 'backbone';
 import actions from '../../src/actions/room';
-import controller from '../../src/home/room_controller';
+import controller from '../../src/room/room_controller';
 import { rooms } from '../../src/stores/room';
 import session from '../../src/stores/session';
 

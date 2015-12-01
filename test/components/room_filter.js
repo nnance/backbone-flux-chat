@@ -5,9 +5,9 @@ import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Backbone from 'backbone';
-import RoomFilter from '../../../src/home/components/room_filter';
-import {rooms} from '../../../src/stores/room';
-import actions from '../../../src/actions/room';
+import RoomFilter from '../../src/components/room_filter';
+import {rooms} from '../../src/stores/room';
+import actions from '../../src/actions/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);

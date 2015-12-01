@@ -1,8 +1,8 @@
 import React from 'react';
-import Filter from './room_filter';
-import RoomList from './room_list';
-import { rooms } from '../../../src/stores/room';
-import session from '../../../src/stores/session';
+import Filter from '../components/room_filter';
+import RoomList from '../components/room_list';
+import { rooms } from '../stores/room';
+import session from '../stores/session';
 
 
 export default class Container extends React.Component {

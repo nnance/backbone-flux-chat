@@ -4,11 +4,11 @@ import sinonChai from 'sinon-chai';
 import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import RoomList from '../../../src/home/components/room_list';
-import { rooms } from '../../../src/stores/room';
-import session from '../../../src/stores/session';
-import actions from '../../../src/actions/room';
-import data from '../../stores/data/room';
+import RoomList from '../../src/components/room_list';
+import { rooms } from '../../src/stores/room';
+import session from '../../src/stores/session';
+import actions from '../../src/actions/room';
+import data from '../stores/data/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);

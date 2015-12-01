@@ -3,8 +3,8 @@ import actions from '../actions/room';
 import app from '../actions/app';
 import { rooms } from '../stores/room';
 import session from '../stores/session';
-import Home from './components/container';
-import Detail from './components/detail';
+import Home from './container';
+import Detail from './detail';
 
 class RoomController {
   constructor() {

@@ -1,9 +1,9 @@
 import React from 'react';
-import BackboneReact from '../../lib/backbonereact';
+import BackboneReact from '../lib/backbonereact';
 import RoomItem from './room_item';
 
-class RoomList extends React.Component {
 
+class RoomList extends React.Component {
   render() {
     const filter = this.props.model.roomFilter;
     return (

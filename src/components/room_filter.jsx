@@ -1,5 +1,6 @@
 import React from 'react';
-import actions from '../../actions/room';
+import actions from '../actions/room';
+
 
 export default class RoomFilter extends React.Component {
 

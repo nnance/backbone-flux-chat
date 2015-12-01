@@ -1,8 +1,7 @@
 import React from 'react';
-import session from '../../stores/session';
+
 
 export default class RoomDetail extends React.Component {
-
   render() {
     return (
       <div className="wrapper wrapper-content animated fadeInUp">

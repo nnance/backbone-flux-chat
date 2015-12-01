@@ -1,6 +1,7 @@
 import React from 'react';
-import BackboneReact from '../../lib/backbonereact';
-import actions from '../../actions/room';
+import BackboneReact from '../lib/backbonereact';
+import actions from '../actions/room';
+
 
 class RoomItem extends React.Component {
   roomId() {
