@@ -2,6 +2,8 @@ import React from 'react';
 import ChatDiscussion from './chat_discussion';
 import ChatUsers from './chat_users';
 import ChatMessage from './chat_message';
+import { users } from '../../stores/user';
+
 
 export default class Detail extends React.Component {
 
@@ -22,7 +24,7 @@ export default class Detail extends React.Component {
                                 <ChatDiscussion />
                             </div>
                             <div className="col-md-3">
-                                <ChatUsers />
+                                <ChatUsers collection={users}/>
                             </div>
                         </div>
                         <div className="row">

@@ -1,9 +1,10 @@
 var rooms = require('./test/stores/data/room').rooms;
+var users = require('./test/stores/data/user').users;
 
 var routes = function(app) {
-  // Account
   app.get('/api/rooms', getRooms);
   app.post('/api/rooms', addRoom);
+  app.get('/api/users', getUsers);
 };
 
 var getRooms = function(req, res, next) {
@@ -22,5 +23,8 @@ var addRoom = function(req, res, next) {
   res.send(room);
 }
 
-rooms.forEach((room,index) => room.id = index+1);
+var getUsers = function(req, res, next) {
+  res.send(users);
+};
+
 module.exports = routes;

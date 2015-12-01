@@ -5,7 +5,8 @@ import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import RoomList from '../../../src/home/components/room_list';
-import {rooms, session} from '../../../src/stores/room';
+import { rooms } from '../../../src/stores/room';
+import session from '../../../src/stores/session';
 import actions from '../../../src/actions/room';
 import data from '../../stores/data/room';
 

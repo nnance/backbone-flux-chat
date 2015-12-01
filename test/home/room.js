@@ -2,9 +2,14 @@ import { expect } from 'chai';
 import Backbone from 'backbone';
 import actions from '../../src/actions/room';
 import controller from '../../src/home/room_controller';
-import {rooms, session} from '../../src/stores/room';
+import { rooms } from '../../src/stores/room';
+import session from '../../src/stores/session';
 
-describe('Room Orchestrations', function() {
+describe('Room Controller', function() {
+  before(function() {
+    Backbone.ajax = function(){};
+  });
+
   after(function() {
     rooms.reset();
     session.clear();

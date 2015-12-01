@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {rooms, session} from '../../src/stores/room';
+import { rooms } from '../../src/stores/room';
 import data from './data/room';
 
 describe('Room Store', function() {
