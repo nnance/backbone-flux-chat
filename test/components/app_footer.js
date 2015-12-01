@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Footer from '../../../src/app/components/footer';
+import Footer from '../../src/components/app_footer';
 
 describe('Footer View', function() {
   let instance;

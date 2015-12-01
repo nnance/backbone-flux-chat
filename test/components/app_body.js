@@ -3,7 +3,7 @@ import jsdom from 'mocha-jsdom';
 import React from 'react';
 import Backbone from 'backbone';
 import TestUtils from 'react-addons-test-utils';
-import Body from '../../../src/app/components/body';
+import Body from '../../src/components/app_body';
 
 describe('Body View', function() {
   let instance;
