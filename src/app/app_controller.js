@@ -3,7 +3,7 @@ import React from 'react';
 /*eslint-enable no-unused-vars*/
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
-import App from './components/app';
+import App from './container';
 import actions from '../actions/app';
 
 

@@ -1,8 +1,8 @@
 import Backbone from 'backbone';
-import actions from '../actions/room';
-import app from '../actions/app';
-import { rooms } from '../stores/room';
-import session from '../stores/session';
+import actions from '../../actions/room';
+import app from '../../actions/app';
+import { rooms } from '../../stores/room';
+import session from '../../stores/session';
 import Home from './container';
 import Detail from './detail';
 

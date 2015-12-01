@@ -1,8 +1,8 @@
 import Backbone from 'backbone';
-import app from '../actions/app';
-import actions from '../actions/user';
+import app from '../../actions/app';
+import actions from '../../actions/user';
 import Container from './container';
-import { users } from '../stores/user';
+import { users } from '../../stores/user';
 
 
 class UserController {

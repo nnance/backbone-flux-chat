@@ -1,7 +1,7 @@
 // import globals
 import 'babel-polyfill';
 import './lib/backbonefetch';
-import './router';
+import './app/router';
 
 // styles
 import '../styles/index.scss';

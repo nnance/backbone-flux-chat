@@ -1,6 +1,6 @@
 import React from 'react';
-import room_actions from '../../actions/room';
-import user_actions from '../../actions/user';
+import room_actions from '../actions/room';
+import user_actions from '../actions/user';
 
 export default class Header extends React.Component {
   showRooms(e) {
