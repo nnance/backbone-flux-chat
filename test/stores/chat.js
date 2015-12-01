@@ -7,7 +7,7 @@ import data from './data/chat';
 describe('Chat Store', function() {
   before(function() {
     users.add(user.users);
-    chats.add(data.chats);
+    chats.add(data.chats.filter((chat) => chat.room === 1));
   });
 
   after(function() {

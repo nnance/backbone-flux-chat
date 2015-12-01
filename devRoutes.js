@@ -3,9 +3,9 @@ var users = require('./test/stores/data/user').users;
 var chats = require('./test/stores/data/chat').chats;
 
 var routes = function(app) {
-  app.get('/api/rooms', (req, res, next) => res.send(rooms));
-  app.get('/api/users', (req, res, next) => res.send(users));
-  app.get('/api/chats', (req, res, next) => res.send(chats));
+  app.get('/api/rooms', (req, res) => res.send(rooms));
+  app.get('/api/users', (req, res) => res.send(users));
+  app.get('/api/chats', (req, res) => res.send(chats.filter((chat) => chat.room == req.query.room)));
   app.post('/api/rooms', addRoom);
 };
 
