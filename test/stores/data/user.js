@@ -5,7 +5,7 @@ module.exports = {
     imageURL: 'img/a4.jpg'
   },{
     id: 2,
-    name: 'Monica Smith',
+    name: 'Nick Rogers',
     imageURL: 'img/a1.jpg'
   },{
     id: 3,
@@ -19,7 +19,7 @@ module.exports = {
     online: true
   },{
     id: 5,
-    name: 'Alice Smith',
+    name: 'Alice Jordan',
     imageURL: 'img/a5.jpg'
   },{
     id: 6,

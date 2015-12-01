@@ -18,8 +18,8 @@ describe('Room Store', function() {
 
     before(() => entries = users.filteredByName('Smith'));
 
-    it('should return 4 item', function() {
-      expect(entries.length).to.equal(4);
+    it('should return 2 item', function() {
+      expect(entries.length).to.equal(2);
     });
 
     it('the remaining item should contain a name of Smith', function() {

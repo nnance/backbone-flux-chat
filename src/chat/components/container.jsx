@@ -3,6 +3,7 @@ import ChatDiscussion from './chat_discussion';
 import ChatUsers from './chat_users';
 import ChatMessage from './chat_message';
 import { users } from '../../stores/user';
+import { chats } from '../../stores/chat';
 
 
 export default class Detail extends React.Component {
@@ -21,7 +22,7 @@ export default class Detail extends React.Component {
                     <div className="ibox-content">
                         <div className="row">
                             <div className="col-md-9 ">
-                                <ChatDiscussion />
+                                <ChatDiscussion collection={chats}/>
                             </div>
                             <div className="col-md-3">
                                 <ChatUsers collection={users}/>
