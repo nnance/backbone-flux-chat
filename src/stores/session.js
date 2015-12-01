@@ -1,5 +1,6 @@
 import Backbone from 'backbone';
 
+
 class SessionModel extends Backbone.Model {
 
   get defaults() {
@@ -20,14 +21,22 @@ class SessionModel extends Backbone.Model {
     }
   }
 
-  set activeRoom(room) {
-    this.set('activeRoom', room);
+  get roomFilter() {
+    return this.get('roomFilter') || '';
+  }
+
+  set roomFilter(value) {
+    this.set('roomFilter', value);
   }
 
   get activeRoom() {
     return this.get('activeRoom');
   }
 
+  set activeRoom(room) {
+    this.set('activeRoom', room);
+  }
+
 }
 
-module.exports = new SessionModel();
+export default new SessionModel();

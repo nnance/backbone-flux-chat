@@ -1,5 +1,5 @@
 import React from 'react';
-import { session } from '../../stores/room';
+import session from '../../stores/session';
 import RoomDetail from './room_detail';
 
 export default class Detail extends React.Component {

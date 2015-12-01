@@ -1,7 +1,8 @@
 import Backbone from 'backbone';
 import actions from '../actions/room';
 import app from '../actions/app';
-import {rooms, session} from '../stores/room';
+import { rooms } from '../stores/room';
+import session from '../stores/session';
 import Home from './components/container';
 import Detail from './components/detail';
 
