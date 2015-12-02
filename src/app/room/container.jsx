@@ -20,7 +20,7 @@ export default class Container extends React.Component {
                   </div>
                   <div className="ibox-content">
                     <Filter/>
-                    <RoomList model={session} collection={rooms}/>
+                    <RoomList session={session} rooms={rooms}/>
                   </div>
                 </div>
               </div>

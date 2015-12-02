@@ -22,10 +22,10 @@ export default class Detail extends React.Component {
                     <div className="ibox-content">
                         <div className="row">
                             <div className="col-md-9 ">
-                                <ChatDiscussion collection={chats}/>
+                                <ChatDiscussion chats={chats}/>
                             </div>
                             <div className="col-md-3">
-                                <ChatUsers collection={users}/>
+                                <ChatUsers users={users}/>
                             </div>
                         </div>
                         <div className="row">

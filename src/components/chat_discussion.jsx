@@ -3,11 +3,14 @@ import BackboneReact from '../lib/backbonereact';
 
 
 class ChatDiscussion extends React.Component {
-
+  listenTo() {
+    return this.props.chats;
+  }
+  
   render() {
     return (
       <div className="chat-discussion">
-        {this.props.collection.map((chat, index) =>
+        {this.props.chats.map((chat, index) =>
           <div className={'chat-message ' + (index % 2 ? 'right' : 'left')}>
               <img className="message-avatar" src={chat.user.imageURL} alt=""/>
               <div className="message">

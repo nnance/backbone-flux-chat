@@ -2,6 +2,10 @@ import React from 'react';
 
 
 export default class RoomDetail extends React.Component {
+  listenTo() {
+    return this.props.room;
+  }
+  
   render() {
     return (
       <div className="wrapper wrapper-content animated fadeInUp">
@@ -11,7 +15,7 @@ export default class RoomDetail extends React.Component {
                       <div className="col-lg-12">
                           <div className="m-b-md">
                               <a href="#" className="btn btn-white btn-xs pull-right">Edit project</a>
-                              <h2>{this.props.model.title}</h2>
+                              <h2>{this.props.room.title}</h2>
                           </div>
                           <dl className="dl-horizontal">
                               <dt>Status:</dt> <dd><span className="label label-primary">Active</span></dd>

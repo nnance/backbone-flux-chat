@@ -4,14 +4,18 @@ import RoomItem from './room_item';
 
 
 class RoomList extends React.Component {
+  listenTo() {
+    return [this.props.session, this.props.rooms];
+  }
+
   render() {
-    const filter = this.props.model.roomFilter;
+    const filter = this.props.session.roomFilter;
     return (
       <div className="project-list">
         <table className="table table-hover">
           <tbody>
-            {this.props.collection.filteredByTitle(filter).map((room) =>
-              <RoomItem model={room} />
+            {this.props.rooms.filteredByTitle(filter).map((room) =>
+              <RoomItem room={room}/>
             )}
           </tbody>
         </table>

@@ -3,12 +3,15 @@ import BackboneReact from '../lib/backbonereact';
 
 
 class ChatUsers extends React.Component {
+  listenTo() {
+    return this.props.users;
+  }
 
   render() {
     return (
       <div className="chat-users">
           <div className="users-list">
-            {this.props.collection.map((room) =>
+            {this.props.users.map((room) =>
               <div className="chat-user">
                   <span className="pull-right label label-primary">{room.isOnline ? 'Online' : ''}</span>
                   <img className="chat-avatar" src={room.imageURL} alt=""/>

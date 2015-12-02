@@ -5,17 +5,21 @@ import actions from '../actions/room';
 
 class RoomItem extends React.Component {
   roomId() {
-    return this.props.model.id;
+    return this.props.room.id;
   }
 
   view(e) {
     e.preventDefault();
-    actions.selectRoom(this.props.model);
+    actions.selectRoom(this.props.room);
   }
 
   selected(e) {
     e.preventDefault();
-    actions.startChat(this.props.model);
+    actions.startChat(this.props.room);
+  }
+
+  listenTo() {
+    return this.props.room;
   }
 
   render() {
@@ -28,7 +32,7 @@ class RoomItem extends React.Component {
           <span className="label label-primary">Active</span>
         </td>
         <td className="project-title">
-          <a href="#" onClick={this.view.bind(this)}>{this.props.model.title}</a>
+          <a href="#" onClick={this.view.bind(this)}>{this.props.room.title}</a>
           <br/>
           <small>Created 14.08.2014</small>
         </td>
