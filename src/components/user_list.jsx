@@ -8,12 +8,13 @@ class UserList extends React.Component {
   }
 
   render() {
+    const filter = this.props.session.userFilter;
     return (
-      <div className="row">
-        {this.props.users.map((user) =>
-          <UserCard user={user}/>
-        )}
-      </div>
+        <div className="row">
+          {this.props.users.filteredByName(filter).map((user) =>
+            <UserCard user={user}/>
+          )}
+        </div>
     );
   }
 }

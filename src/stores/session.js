@@ -29,6 +29,14 @@ class SessionModel extends Backbone.Model {
     this.set('roomFilter', value);
   }
 
+  get userFilter() {
+    return this.get('userFilter') || '';
+  }
+
+  set userFilter(value) {
+    this.set('userFilter', value);
+  }
+
   get activeRoom() {
     return this.get('activeRoom');
   }
