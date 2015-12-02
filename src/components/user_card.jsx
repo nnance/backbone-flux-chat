@@ -1,12 +1,7 @@
 import React from 'react';
-import BackboneReact from '../lib/backbonereact';
 
 
 class UserCard extends React.Component {
-  listenTo() {
-    return this.props.user;
-  }
-  
   render() {
     return (
       <div className="col-lg-4">
@@ -36,4 +31,4 @@ class UserCard extends React.Component {
   }
 }
 
-export default BackboneReact(UserCard);
+export default UserCard;

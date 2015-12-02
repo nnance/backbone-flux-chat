@@ -2,10 +2,7 @@ import React from 'react';
 
 
 export default class RoomDetail extends React.Component {
-  listenTo() {
-    return this.props.room;
-  }
-  
+
   render() {
     return (
       <div className="wrapper wrapper-content animated fadeInUp">

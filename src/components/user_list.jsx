@@ -3,7 +3,7 @@ import BackboneReact from '../lib/backbonereact';
 import UserCard from './user_card';
 
 class UserList extends React.Component {
-  listenTo() {
+  bindings() {
     return this.props.users;
   }
 

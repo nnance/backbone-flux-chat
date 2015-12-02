@@ -3,10 +3,10 @@ import BackboneReact from '../lib/backbonereact';
 
 
 class ChatDiscussion extends React.Component {
-  listenTo() {
+  bindings() {
     return this.props.chats;
   }
-  
+
   render() {
     return (
       <div className="chat-discussion">

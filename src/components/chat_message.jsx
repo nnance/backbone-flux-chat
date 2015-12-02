@@ -1,5 +1,4 @@
 import React from 'react';
-import BackboneReact from '../lib/backbonereact';
 
 
 class ChatMessage extends React.Component {
@@ -15,4 +14,4 @@ class ChatMessage extends React.Component {
   }
 }
 
-export default BackboneReact(ChatMessage);
+export default ChatMessage;

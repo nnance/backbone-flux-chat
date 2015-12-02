@@ -1,5 +1,4 @@
 import React from 'react';
-import BackboneReact from '../lib/backbonereact';
 import actions from '../actions/room';
 
 
@@ -16,10 +15,6 @@ class RoomItem extends React.Component {
   selected(e) {
     e.preventDefault();
     actions.startChat(this.props.room);
-  }
-
-  listenTo() {
-    return this.props.room;
   }
 
   render() {
@@ -45,4 +40,4 @@ class RoomItem extends React.Component {
   }
 }
 
-export default BackboneReact(RoomItem);
+export default RoomItem;

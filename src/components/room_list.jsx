@@ -4,7 +4,7 @@ import RoomItem from './room_item';
 
 
 class RoomList extends React.Component {
-  listenTo() {
+  bindings() {
     return [this.props.session, this.props.rooms];
   }
 

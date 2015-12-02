@@ -3,7 +3,7 @@ import BackboneReact from '../lib/backbonereact';
 
 
 class ChatUsers extends React.Component {
-  listenTo() {
+  bindings() {
     return this.props.users;
   }
 
