@@ -4,7 +4,7 @@ import UserCard from './user_card';
 
 class UserList extends React.Component {
   bindings() {
-    return this.props.users;
+    return [this.props.users, this.props.session];
   }
 
   render() {
