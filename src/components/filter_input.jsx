@@ -13,7 +13,7 @@ class BasicFilter extends React.Component {
   }
 }
 
-class InputGroup extends BasicFilter {
+class AddButtonFilter extends BasicFilter {
   triggerAdd() {
     this.props.addAction(this.refs.filter.value);
   }
@@ -43,7 +43,7 @@ export default class FilterInput extends React.Component {
           <button type="button" id="loading-example-btn" className="btn btn-white btn-sm" ><i className="fa fa-refresh"></i> Refresh</button>
         </div>
         <div className="col-md-11">
-          {this.props.addAction ? <InputGroup {...this.props}/> : <BasicFilter {...this.props}/>}
+          {this.props.addAction ? <AddButtonFilter {...this.props}/> : <BasicFilter {...this.props}/>}
         </div>
       </div>
     );
