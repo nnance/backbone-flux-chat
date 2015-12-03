@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import BackboneReact from '../lib/backbonereact';
 
 
@@ -7,11 +8,16 @@ class ChatDiscussion extends React.Component {
     return this.props.chats;
   }
 
+  componentDidUpdate() {
+    var elem = ReactDOM.findDOMNode(this.refs.discussion);
+    elem.scrollTop = elem.scrollHeight;
+  }
+
   render() {
     return (
-      <div className="chat-discussion">
+      <div className="chat-discussion" ref="discussion">
         {this.props.chats.map((chat, index) =>
-          <div className={'chat-message ' + (index % 2 ? 'right' : 'left')}>
+          <div className={'chat-message ' + (index % 2 ? 'right' : 'left')} key={chat.id}>
               <img className="message-avatar" src={chat.user.imageURL} alt=""/>
               <div className="message">
                   <a className="message-author" href="#">{chat.user.name}</a>

@@ -5,6 +5,7 @@ const roomFilter = 'ROOM_FILTER';
 const roomSelected = 'ROOM_SELECTED';
 const roomStartChat = 'ROOM_START_CHAT';
 const roomAdd = 'ROOM_ADD';
+const addChatMessage = 'ADD_CHAT_MSG';
 
 module.exports = {
   SHOW_ROOMS: showRooms,
@@ -12,6 +13,7 @@ module.exports = {
   ROOM_SELECTED: roomSelected,
   ROOM_START_CHAT: roomStartChat,
   ROOM_ADD: roomAdd,
+  ADD_CHAT_MSG: addChatMessage,
 
   showRooms: function() {
     Backbone.trigger(showRooms);
@@ -38,6 +40,12 @@ module.exports = {
   addRoom: function(title) {
     Backbone.trigger(roomAdd, {
       title: title
+    });
+  },
+
+  addChatMessage: function(msg) {
+    Backbone.trigger(addChatMessage, {
+      msg: msg
     });
   }
 
