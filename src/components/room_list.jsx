@@ -15,7 +15,7 @@ class RoomList extends React.Component {
         <table className="table table-hover">
           <tbody>
             {this.props.rooms.filteredByTitle(filter).map((room) =>
-              <RoomItem room={room}/>
+              <RoomItem room={room} key={room.id}/>
             )}
           </tbody>
         </table>

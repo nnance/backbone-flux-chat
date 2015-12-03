@@ -5,15 +5,17 @@ import jsdom from 'mocha-jsdom';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Backbone from 'backbone';
-import RoomFilter from '../../src/components/room_filter';
+import FilterInput from '../../src/components/filter_input';
 import {rooms} from '../../src/stores/room';
-import actions from '../../src/actions/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);
 
-function render(room) {
-  return TestUtils.renderIntoDocument(<RoomFilter/>);
+const setFilter = sinon.stub();
+const addRoom = sinon.stub();
+
+function render() {
+  return TestUtils.renderIntoDocument(<FilterInput filterAction={setFilter} addText='Add Room' addAction={addRoom}/>);
 }
 
 describe('Room Filter View', function() {
@@ -29,20 +31,15 @@ describe('Room Filter View', function() {
     });
 
     it('should trigger action on change', function(){
-      const stub = sinon.stub(actions,'setFilter');
-
       const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
       const node = React.findDOMNode(entries[0]);
       node.value = 'filtered';
       TestUtils.Simulate.change(node);
 
-      stub.restore();
-      expect(stub).to.have.been.calledWith('filtered');
+      expect(setFilter).to.have.been.calledWith('filtered');
     });
 
     it('should trigger action on add', function(){
-      const stub = sinon.stub(actions, 'addRoom');
-
       var entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'input');
       var node = React.findDOMNode(entries[0]);
       node.value = 'reactjs';
@@ -51,8 +48,7 @@ describe('Room Filter View', function() {
       node = React.findDOMNode(entries[1]);
       TestUtils.Simulate.click(node);
 
-      stub.restore();
-      expect(stub).to.have.been.calledWith('reactjs');
+      expect(addRoom).to.have.been.calledWith('reactjs');
     });
 
   });

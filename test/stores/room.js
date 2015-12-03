@@ -4,7 +4,6 @@ import data from './data/room';
 
 describe('Room Store', function() {
   before(() => rooms.add(data.rooms));
-
   after(() => rooms.reset());
 
   describe('when initialized', function() {

@@ -8,7 +8,7 @@ class BasicFilter extends React.Component {
 
   render() {
     return (
-      <input type="text" placeholder="Search" className="input-sm form-control" onChange={this.filterList.bind(this)} ref="filter"></input>
+      <input type="text" placeholder="Search" className="input-sm form-control" onChange={this.filterList.bind(this)}></input>
     );
   }
 }
@@ -27,9 +27,9 @@ class AddButtonFilter extends BasicFilter {
     return (
       <div className="input-group">
         <input type="text" placeholder="Search" className="input-sm form-control" onChange={this.filterList.bind(this)} ref="filter"></input>
-          <span className="input-group-btn">
-            {addButton}
-          </span>
+        <span className="input-group-btn">
+          {addButton}
+        </span>
       </div>
     );
   }

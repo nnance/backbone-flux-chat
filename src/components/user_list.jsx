@@ -12,7 +12,7 @@ class UserList extends React.Component {
     return (
         <div className="row">
           {this.props.users.filteredByName(filter).map((user) =>
-            <UserCard user={user}/>
+            <UserCard user={user} key={user.id}/>
           )}
         </div>
     );

@@ -18,10 +18,7 @@ describe('Room List View', function() {
   jsdom();
 
   beforeEach(function() {
-    instance = TestUtils.renderIntoDocument(<RoomList
-      model={session}
-      collection={rooms}
-    />);
+    instance = TestUtils.renderIntoDocument(<RoomList session={session} rooms={rooms}/>);
   });
 
   afterEach(() => React.unmountComponentAtNode(React.findDOMNode(instance).parentNode));
@@ -57,7 +54,7 @@ describe('Room List View', function() {
 
     describe('When filter is set to filtered', function() {
       before(() => session.roomFilter = 'filtered');
-      after(() => session.roomFilter = '');
+      after(() => session.clear());
 
       it('should render only 1 item', function() {
         const entries = TestUtils.scryRenderedDOMComponentsWithTag(instance, 'tr');

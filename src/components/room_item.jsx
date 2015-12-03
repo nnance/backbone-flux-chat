@@ -3,10 +3,6 @@ import actions from '../actions/room';
 
 
 class RoomItem extends React.Component {
-  roomId() {
-    return this.props.room.id;
-  }
-
   view(e) {
     e.preventDefault();
     actions.selectRoom(this.props.room);
@@ -22,7 +18,7 @@ class RoomItem extends React.Component {
       width: '48%'
     }
     return (
-      <tr key={this.roomId()}>
+      <tr>
         <td className="project-status">
           <span className="label label-primary">Active</span>
         </td>

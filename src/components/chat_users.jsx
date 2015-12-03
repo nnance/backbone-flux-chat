@@ -12,7 +12,7 @@ class ChatUsers extends React.Component {
       <div className="chat-users">
           <div className="users-list">
             {this.props.users.map((room) =>
-              <div className="chat-user">
+              <div className="chat-user" key={room.id}>
                   <span className="pull-right label label-primary">{room.isOnline ? 'Online' : ''}</span>
                   <img className="chat-avatar" src={room.imageURL} alt=""/>
                   <div className="chat-user-name">

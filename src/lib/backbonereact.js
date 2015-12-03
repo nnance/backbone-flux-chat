@@ -1,6 +1,6 @@
 import React from 'react';
 
-var getBindings = function(bbreact) {
+function getBindings(bbreact) {
   var results = [];
   if (bbreact.bindings) {
     let bindingsFunc = bbreact.bindings.bind(bbreact);
