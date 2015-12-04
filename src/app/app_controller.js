@@ -7,8 +7,10 @@ import App from './container';
 import actions from '../actions/app';
 
 
-export default class AppController {
-  constructor(rooms, users) {
+class AppController {
+  constructor(router, session, rooms, users) {
+    this.router = router;
+    this.session = session;
     this.rooms = rooms;
     this.users = users;
     Backbone.on(actions.APP_SHOW_COMPONENT, this.showComponent, this);
@@ -19,15 +21,13 @@ export default class AppController {
   }
 
   showApp() {
-    this.appComponent = ReactDOM.render(<App />, document.getElementById('root'));
+    this.appComponent = ReactDOM.render(<App session={this.session}/>, document.getElementById('root'));
     // prefetch data before starting the router.  this will also allow for
     // signing on the user when needed
     Promise.all([this.rooms.fetch(), this.users.fetch()])
       .then(() => Backbone.history.start({ pushState: true }));
   }
 
-  showComponent(component) {
-    this.appComponent.setState({visibleComponent: component});
-  }
-
 }
+
+export default AppController;

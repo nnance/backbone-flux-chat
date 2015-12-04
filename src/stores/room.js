@@ -7,7 +7,7 @@ class RoomModel extends Backbone.Model {
   }
 }
 
-class RoomCollection extends Backbone.Collection {
+export default class RoomCollection extends Backbone.Collection {
 
   get model() {
     return RoomModel;
@@ -29,7 +29,3 @@ class RoomCollection extends Backbone.Collection {
     return this.fetch().then(() => this.get(id));
   }
 }
-
-module.exports = {
-  rooms: new RoomCollection()
-};

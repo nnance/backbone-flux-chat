@@ -1,13 +1,17 @@
+/*eslint-disable no-unused-vars*/
+import React from 'react';
+/*eslint-enable no-unused-vars*/
+import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
-import app from '../../actions/app';
 import actions from '../../actions/user';
 import Container from './container';
-import { users } from '../../stores/user';
-import session from '../../stores/session';
 
 
-class UserController {
-  constructor() {
+export default class UserController {
+  constructor(session, users) {
+    this.session = session;
+    this.users = users;
+
     Backbone.on(actions.SHOW_USERS, this.showUsers, this);
     Backbone.on(actions.FILTER_USERS, this.setFilter, this);
   }
@@ -17,14 +21,12 @@ class UserController {
   }
 
   setFilter(msg) {
-    session.userFilter = msg.filter;
+    this.session.userFilter = msg.filter;
   }
 
   showList() {
-    app.showComponent(Container);
-    users.fetch();
+    ReactDOM.render(<Container session={this.session} users={this.users}/>, document.getElementById('body'));
+    this.users.fetch();
   }
 
 }
-
-module.exports = new UserController();

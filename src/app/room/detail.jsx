@@ -1,11 +1,10 @@
 import React from 'react';
-import session from '../../stores/session';
 import RoomDetail from '../../components/room_detail';
 
 export default class Detail extends React.Component {
 
   render() {
-    const room = session.activeRoom;
+    const room = this.props.session.activeRoom;
 
     return (
       <div className="wrapper wrapper-content">

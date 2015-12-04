@@ -13,14 +13,18 @@ class ChatDiscussion extends React.Component {
     elem.scrollTop = elem.scrollHeight;
   }
 
+  getUser(chat) {
+    return this.props.users.get(chat.user);
+  }
+
   render() {
     return (
       <div className="chat-discussion" ref="discussion">
         {this.props.chats.map((chat, index) =>
           <div className={'chat-message ' + (index % 2 ? 'right' : 'left')} key={chat.id}>
-              <img className="message-avatar" src={chat.user.imageURL} alt=""/>
+              <img className="message-avatar" src={this.getUser(chat).imageURL} alt=""/>
               <div className="message">
-                  <a className="message-author" href="#">{chat.user.name}</a>
+                  <a className="message-author" href="#">{this.getUser(chat).name}</a>
                   <span className="message-date">{chat.date}</span>
                   <span className="message-content">{chat.text}</span>
               </div>

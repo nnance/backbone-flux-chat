@@ -23,7 +23,7 @@ class UserModel extends Backbone.Model {
   }
 }
 
-class UserCollection extends Backbone.Collection {
+export default class UserCollection extends Backbone.Collection {
 
   get model() {
     return UserModel;
@@ -41,7 +41,3 @@ class UserCollection extends Backbone.Collection {
     }
   }
 }
-
-module.exports = {
-  users: new UserCollection()
-};

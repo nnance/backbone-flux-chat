@@ -1,18 +1,13 @@
 import { expect } from 'chai';
-import { users } from '../../src/stores/user';
-import { chats } from '../../src/stores/chat';
-import user from './data/user';
+import Chats from '../../src/stores/chat';
 import data from './data/chat';
 
 describe('Chat Store', function() {
-  before(function() {
-    users.add(user.users);
-    chats.add(data.chats.filter((chat) => chat.room === 1));
-  });
+  let chats;
 
-  after(function() {
-    users.reset();
-    chats.reset();
+  before(function() {
+    chats = new Chats();
+    chats.add(data.chats.filter((chat) => chat.room === 1));
   });
 
   describe('when initialized', function() {
@@ -24,21 +19,17 @@ describe('Chat Store', function() {
   describe('When filtered with a valid filter', function() {
     var entries;
 
-    before(() => entries = chats.filteredByName('Smith'));
+    before(() => entries = chats.filteredByUser(3));
 
     it('should return 2 item', function() {
       expect(entries.length).to.equal(2);
-    });
-
-    it('the remaining item should contain a name of Smith', function() {
-      expect(entries[0].user.name.indexOf('Smith')).to.be.above(0);
     });
   });
 
   describe('When filtered with an empty filter', function() {
     var entries;
 
-    before(() => entries = chats.filteredByName(''));
+    before(() => entries = chats.filteredByUser());
 
     it('should return 5 items', function() {
       expect(entries.length).to.equal(5);

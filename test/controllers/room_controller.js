@@ -1,18 +1,19 @@
 import { expect } from 'chai';
 import Backbone from 'backbone';
 import actions from '../../src/actions/room';
-import controller from '../../src/app/room/room_controller';
-import { rooms } from '../../src/stores/room';
-import session from '../../src/stores/session';
+import Controller from '../../src/app/room/room_controller';
+import Rooms from '../../src/stores/room';
+import Session from '../../src/stores/session';
 
 describe('Room Controller', function() {
-  before(function() {
-    Backbone.ajax = function(){};
-  });
+  let controller, session, rooms;
 
-  after(function() {
-    rooms.reset();
-    session.clear();
+  before(function() {
+    session = new Session();
+    rooms = new Rooms();
+    controller = new Controller(session, rooms);
+
+    Backbone.ajax = function(){};
   });
 
   describe('When receiving add room message', function() {

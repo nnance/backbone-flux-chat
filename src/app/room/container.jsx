@@ -1,8 +1,6 @@
 import React from 'react';
 import FilterInput from '../../components/filter_input';
 import RoomList from '../../components/room_list';
-import { rooms } from '../../stores/room';
-import session from '../../stores/session';
 import actions from '../../actions/room';
 
 
@@ -21,7 +19,7 @@ export default class Container extends React.Component {
                   </div>
                   <div className="ibox-content">
                     <FilterInput filterAction={actions.setFilter} addText='Add Room' addAction={actions.addRoom}/>
-                    <RoomList session={session} rooms={rooms}/>
+                    <RoomList session={this.props.session} rooms={this.props.rooms}/>
                   </div>
                 </div>
               </div>

@@ -1,5 +1,4 @@
 import Backbone from 'backbone';
-import { users } from './user';
 
 class ChatModel extends Backbone.Model {
   get date() {
@@ -15,7 +14,7 @@ class ChatModel extends Backbone.Model {
   }
 
   get user() {
-    return users.get(this.get('user'));
+    return this.get('user');
   }
 
   set user(id) {
@@ -23,7 +22,7 @@ class ChatModel extends Backbone.Model {
   }
 }
 
-class ChatCollection extends Backbone.Collection {
+export default class ChatCollection extends Backbone.Collection {
 
   get model() {
     return ChatModel;
@@ -33,16 +32,12 @@ class ChatCollection extends Backbone.Collection {
     return '/api/chats';
   }
 
-  filteredByName(filter) {
-    if (filter.length === 0) {
+  filteredByUser(filter) {
+    if (!filter || filter.length === 0) {
       return this.models;
     } else {
-      return this.filter((item) => item.user.name.indexOf(filter) >= 0);
+      return this.filter((item) => item.user === filter);
     }
   }
 
 }
-
-module.exports = {
-  chats: new ChatCollection()
-};

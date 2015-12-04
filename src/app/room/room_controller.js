@@ -1,13 +1,17 @@
+/*eslint-disable no-unused-vars*/
+import React from 'react';
+/*eslint-enable no-unused-vars*/
+import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
 import actions from '../../actions/room';
-import app from '../../actions/app';
-import { rooms } from '../../stores/room';
-import session from '../../stores/session';
 import Home from './container';
 import Detail from './detail';
 
-class RoomController {
-  constructor() {
+export default class RoomController {
+  constructor(session, rooms) {
+    this.session = session;
+    this.rooms = rooms;
+
     Backbone.on(actions.SHOW_ROOMS, this.showRooms, this);
     Backbone.on(actions.ROOM_ADD, this.addRoom, this);
     Backbone.on(actions.ROOM_SELECTED, this.selectRoom, this);
@@ -20,7 +24,7 @@ class RoomController {
   }
 
   addRoom(attributes) {
-    rooms.create(attributes);
+    this.rooms.create(attributes);
   }
 
   showRooms() {
@@ -28,27 +32,25 @@ class RoomController {
   }
 
   selectRoom(msg) {
-    session.activeRoom = msg.room;
+    this.session.activeRoom = msg.room;
     Backbone.history.navigate('detail', {trigger: true});
   }
 
   startChat(msg) {
-    session.activeRoom = msg.room;
+    this.session.activeRoom = msg.room;
     Backbone.history.navigate('chat/' + msg.room.id, {trigger: true});
   }
 
   setFilter(msg) {
-    session.roomFilter = msg.filter;
+    this.session.roomFilter = msg.filter;
   }
 
   showHome() {
-    app.showComponent(Home);
-    rooms.fetch();
+    ReactDOM.render(<Home session={this.session} rooms={this.rooms}/>, document.getElementById('body'));
+    this.rooms.fetch();
   }
 
   showDetail() {
-    app.showComponent(Detail);
+    ReactDOM.render(<Detail session={this.session}/>, document.getElementById('body'));
   }
 }
-
-module.exports = new RoomController();

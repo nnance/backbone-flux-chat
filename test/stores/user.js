@@ -1,11 +1,14 @@
 import { expect } from 'chai';
-import { users } from '../../src/stores/user';
+import Users from '../../src/stores/user';
 import data from './data/user';
 
-describe('Room Store', function() {
-  before(() => users.add(data.users));
+describe('User Store', function() {
+  let users;
 
-  after(() => users.reset());
+  before(() => {
+    users = new Users();
+    users.add(data.users)
+  });
 
   describe('when initialized', function() {
     it('should have 6 items', function(){

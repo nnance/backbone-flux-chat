@@ -1,9 +1,14 @@
 import { expect } from 'chai';
-import { rooms } from '../../src/stores/room';
+import Rooms from '../../src/stores/room';
 import data from './data/room';
 
 describe('Room Store', function() {
-  before(() => rooms.add(data.rooms));
+  let rooms;
+
+  before(() => {
+    rooms = new Rooms();
+    rooms.add(data.rooms);
+  });
   after(() => rooms.reset());
 
   describe('when initialized', function() {

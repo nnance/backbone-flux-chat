@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 
 
-class SessionModel extends Backbone.Model {
+export default class SessionModel extends Backbone.Model {
 
   get defaults() {
     return {
@@ -46,5 +46,3 @@ class SessionModel extends Backbone.Model {
   }
 
 }
-
-export default new SessionModel();
