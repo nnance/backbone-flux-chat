@@ -24,6 +24,10 @@ class RoomCollection extends Backbone.Collection {
       return this.filter((item) => item.title.indexOf(filter) >= 0);
     }
   }
+
+  getById(id) {
+    return this.fetch().then(() => this.get(id));
+  }
 }
 
 module.exports = {

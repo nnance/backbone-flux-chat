@@ -6,7 +6,6 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Backbone from 'backbone';
 import FilterInput from '../../src/components/filter_input';
-import {rooms} from '../../src/stores/room';
 
 let expect = chai.expect;
 chai.use(sinonChai);

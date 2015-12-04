@@ -3,6 +3,7 @@ import app from '../../actions/app';
 import Container from './container';
 import session from '../../stores/session';
 import { users } from '../../stores/user';
+import { rooms } from '../../stores/room';
 import { chats } from '../../stores/chat';
 import actions from '../../actions/room';
 
@@ -12,10 +13,14 @@ class ChatController {
     Backbone.on(actions.ADD_CHAT_MSG, this.addChatMessage, this);
   }
 
-  showChat() {
-    app.showComponent(Container);
-    users.fetch();
-    chats.fetch({data: {room: session.activeRoom.id}});
+  showChat(room_id) {
+    rooms.fetch()
+      .then(() => {
+        session.activeRoom = rooms.get(room_id);
+        app.showComponent(Container);
+        users.fetch();
+        chats.fetch({data: {room: session.activeRoom.id}});
+      });
   }
 
   addChatMessage(chat) {

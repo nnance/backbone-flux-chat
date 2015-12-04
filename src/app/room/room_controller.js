@@ -34,7 +34,7 @@ class RoomController {
 
   startChat(msg) {
     session.activeRoom = msg.room;
-    Backbone.history.navigate('chat', {trigger: true});
+    Backbone.history.navigate('chat/' + msg.room.id, {trigger: true});
   }
 
   setFilter(msg) {

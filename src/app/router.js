@@ -9,7 +9,7 @@ class Router extends Backbone.Router {
     this.route('', '', room.showHome.bind(room));
     this.route('detail', 'room#showDetail', room.showDetail.bind(room));
     this.route('user', 'user#showList', user.showList.bind(user));
-    this.route('chat', 'chat#showChat', chat.showChat.bind(chat));
+    this.route('chat/:id', 'chat#showChat', chat.showChat.bind(chat));
   }
 }
 
