@@ -1,9 +1,10 @@
 import Backbone from 'backbone';
 import app from '../../actions/app';
 import Container from './container';
+import actions from '../../actions/room';
 import session from '../../stores/session';
 import { chats } from '../../stores/chat';
-import actions from '../../actions/room';
+import { rooms } from '../../stores/room';
 
 
 class ChatController {
