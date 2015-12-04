@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
 import App from './container';
 import actions from '../actions/app';
+import {rooms} from '../stores/room';
+import {users} from '../stores/user';
 
 
 class AppController {
@@ -18,7 +20,10 @@ class AppController {
 
   showApp() {
     this.appComponent = ReactDOM.render(<App />, document.getElementById('root'));
-    Backbone.history.start({ pushState: true });
+    // prefetch data before starting the router.  this will also allow for
+    // signing on the user when needed
+    Promise.all([rooms.fetch(), users.fetch()])
+      .then(() => Backbone.history.start({ pushState: true }));
   }
 
   showComponent(component) {
