@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Avatar from 'react-avatar';
 
 class UserCard extends React.Component {
   render() {
@@ -9,8 +9,10 @@ class UserCard extends React.Component {
               <a href="profile.html">
               <div className="col-sm-4">
                   <div className="text-center">
-                      <img alt="image" className="img-circle m-t-xs img-responsive" src={this.props.user.imageURL}/>
-                      <div className="m-t-xs font-bold">{this.props.user.title}</div>
+                    <div className="m-t-xs img-responsive">
+                      <Avatar name={this.props.user.name} color={this.props.user.color} size={80} round={true}/>
+                    </div>
+                    <div className="m-t-xs font-bold">{this.props.user.title}</div>
                   </div>
               </div>
               <div className="col-sm-8">

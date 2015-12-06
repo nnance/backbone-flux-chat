@@ -1,5 +1,6 @@
 import React from 'react';
 import BackboneReact from '../lib/backbonereact';
+import Avatar from 'react-avatar';
 
 
 class ChatUsers extends React.Component {
@@ -11,12 +12,14 @@ class ChatUsers extends React.Component {
     return (
       <div className="chat-users">
           <div className="users-list">
-            {this.props.users.map((room) =>
-              <div className="chat-user" key={room.id}>
-                  <span className="pull-right label label-primary">{room.isOnline ? 'Online' : ''}</span>
-                  <img className="chat-avatar" src={room.imageURL} alt=""/>
+            {this.props.users.map((user) =>
+              <div className="chat-user" key={user.id}>
+                  <span className="pull-right label label-primary">{user.isOnline ? 'Online' : ''}</span>
+                  <div className="chat-avatar">
+                    <Avatar name={user.name}  color={user.color} size={36} round={true}/>
+                  </div>
                   <div className="chat-user-name">
-                      <a href="#">{room.name}</a>
+                      <a href="#">{user.name}</a>
                   </div>
               </div>
             )}
