@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
 import App from './container';
+import io from 'socket.io-client';
 import actions from '../actions/app';
 
 
@@ -25,7 +26,11 @@ class AppController {
     // prefetch data before starting the router.  this will also allow for
     // signing on the user when needed
     Promise.all([this.rooms.fetch(), this.users.fetch()])
-      .then(() => Backbone.history.start({ pushState: true }));
+      .then(() => {
+        Backbone.history.start({ pushState: true })
+        this.socket = io();
+        this.socket.on('connect', () => console.log('connected'));
+      });
   }
 
 }
