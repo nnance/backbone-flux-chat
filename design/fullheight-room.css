@@ -23,7 +23,7 @@ body {
 }
 
 .fh-breadcrumb {
-  height: calc(100% - 180px);
+  height: calc(100% - 115px);
   /*margin: 0 -15px;*/
   position: relative
 }
