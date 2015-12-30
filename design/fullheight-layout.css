@@ -1,15 +1,6 @@
-/* Sticky footer styles
+/* full height with fixed nav and footer
 -------------------------------------------------- */
-html,body {
-  height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 61px;
-}
-
-.full-height {
+.fh-content {
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -19,23 +10,21 @@ body {
   background: #f8f8f8;
 }
 
-.full-height.fh-fixed-nav {
+.fh-content.fh-fixed-nav {
   top: 50px;
 }
 
-.full-height.fh-fixed-footer {
+.fh-content.fh-nav-header {
+  top: 100px;
+}
+
+.fh-content.fh-fixed-footer {
   bottom: 61px;
 }
 
 .navbar-default.navbar-white {
   background-color: #fff;
   border-color: #e7e7e7;
-}
-
-.fh-breadcrumb {
-  height: calc(100% - 115px);
-  position: relative;
-  overflow-y: auto;
 }
 
 .container-fluid.fh-container,
@@ -46,11 +35,11 @@ body {
 .row.container-header {
   background: #fff;
   border-top: 0;
-  padding: 0px 10px 10px 10px;
-  border-bottom: 1px solid #e7eaec;
+  height: 50px;
+  border-bottom: 1px solid #e7e7e7;
 }
 
-/* footer
+/* fixed footer styles
 ---------------------*/
 .footer {
   position: absolute;
@@ -59,9 +48,7 @@ body {
   /* Set the fixed height of the footer here */
   height: 61px;
   background-color: #fff;
-  border-top-style: solid;
-  border-color: #e7e7e7;
-  border-width: 1px;
+  border-top: 1px solid #e7e7e7;
 }
 
 .footer .text-muted {
