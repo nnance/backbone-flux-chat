@@ -8,20 +8,24 @@ export default class Container extends React.Component {
 
   render() {
     return (
-      <div className="wrapper wrapper-content">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="wrapper wrapper-content animated fadeInUp">
-                <div className="ibox">
-                  <div className="ibox-title">
-                      <h5>All available rooms</h5>
-                  </div>
-                  <div className="ibox-content">
-                    <FilterInput filterAction={actions.setFilter} addText='Add Room' addAction={actions.addRoom}/>
-                    <RoomList session={this.props.session} rooms={this.props.rooms}/>
-                  </div>
+      <div className="fh-content fh-fixed-nav">
+        <div className="container-fluid">
+          <div className="row container-header">
+            <div className="container">
+                <div className="col-xs-8" style={{paddingTop: 5}}>
+                  <h4>Avaliable Rooms</h4>
                 </div>
+                <div className="col-xs-4" style={{paddingTop: 10}}>
+                  <FilterInput filterAction={actions.setFilter} addText='Add Room' addAction={actions.addRoom}/>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div className="fh-content fh-fixed-nav fh-fixed-footer">
+          <div className="container fh-container">
+            <div className="panel panel-default">
+              <div className="panel-body">
+                <RoomList session={this.props.session} rooms={this.props.rooms}/>
               </div>
             </div>
           </div>

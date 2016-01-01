@@ -1,0 +1,34 @@
+.table.table-room td {
+ vertical-align: middle;
+ border-top: none;
+ border-bottom: 1px solid #ddd;
+}
+
+.room-actions {
+  vertical-align: middle;
+  border-top: none;
+  text-align: right;
+  border-bottom: 1px solid #ddd;
+}
+
+.room-people img {
+  width: 32px;
+  height: 32px;
+}
+
+.room-title a {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.room-manager .tag-list li a {
+  font-size: 10px;
+  background-color: white;
+  padding: 5px 12px;
+  color: inherit;
+  border-radius: 2px;
+  /*border: 1px solid $border-color;*/
+  margin-right: 5px;
+  margin-top: 5px;
+  display: block;
+}

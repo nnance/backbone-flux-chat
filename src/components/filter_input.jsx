@@ -38,13 +38,8 @@ class AddButtonFilter extends BasicFilter {
 export default class FilterInput extends React.Component {
   render() {
     return (
-      <div className="row m-b-sm m-t-sm">
-        <div className="col-md-1">
-          <button type="button" id="loading-example-btn" className="btn btn-white btn-sm" ><i className="fa fa-refresh"></i> Refresh</button>
-        </div>
-        <div className="col-md-11">
-          {this.props.addAction ? <AddButtonFilter {...this.props}/> : <BasicFilter {...this.props}/>}
-        </div>
+      <div>
+        {this.props.addAction ? <AddButtonFilter {...this.props}/> : <BasicFilter {...this.props}/>}
       </div>
     );
   }

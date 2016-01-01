@@ -10,11 +10,13 @@ export default class Footer extends React.Component {
   render() {
     return (
       <div className="footer">
-        <div className="pull-right">
+        <div className="container">
+          <div className="text-muted pull-right">
             10GB of <strong>250GB</strong> Free.
-        </div>
-        <div>
+          </div>
+          <div className="text-muted">
             <strong>Copyright</strong> Example Company &copy; 2014-2015
+          </div>
         </div>
       </div>
     );

@@ -11,15 +11,13 @@ class RoomList extends React.Component {
   render() {
     const filter = this.props.session.roomFilter;
     return (
-      <div className="project-list">
-        <table className="table table-hover">
-          <tbody>
-            {this.props.rooms.filteredByTitle(filter).map((room) =>
-              <RoomItem room={room} key={room.id}/>
-            )}
-          </tbody>
-        </table>
-      </div>
+      <table className="table table-hover table-room">
+        <tbody>
+          {this.props.rooms.filteredByTitle(filter).map((room) =>
+            <RoomItem room={room} key={room.id}/>
+          )}
+        </tbody>
+      </table>
     );
   }
 }

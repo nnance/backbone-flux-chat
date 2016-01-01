@@ -1,0 +1,56 @@
+/* full height with fixed nav and footer
+-------------------------------------------------- */
+.fh-content {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  overflow-y: auto;
+  background: #f8f8f8;
+}
+
+.fh-content.fh-fixed-nav {
+  top: 50px;
+}
+
+.fh-content.fh-nav-header {
+  top: 100px;
+}
+
+.fh-content.fh-fixed-footer {
+  bottom: 61px;
+}
+
+.navbar-default.navbar-white {
+  background-color: #fff;
+  border-color: #e7e7e7;
+}
+
+.container-fluid.fh-container,
+.container.fh-container {
+  padding-top: 20px;
+}
+
+.row.container-header {
+  background: #fff;
+  border-top: 0;
+  height: 50px;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+/* fixed footer styles
+---------------------*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 61px;
+  background-color: #fff;
+  border-top: 1px solid #e7e7e7;
+}
+
+.footer .text-muted {
+  margin: 20px 0;
+}
