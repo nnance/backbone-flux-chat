@@ -16,12 +16,12 @@ export default class Header extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-default navbar-white navbar-fixed-top">
-        <div className="container">
+        <div className="container-fluid">
           <div className="navbar-header">
               <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" className="navbar-toggle collapsed" type="button">
                   <i className="fa fa-reorder"></i>
               </button>
-              <a href="#" className="navbar-brand">Flux Chat Client</a>
+              <a href="#" className="navbar-brand" style={{background: "#e7e7e7"}}>Flux Chat Client</a>
           </div>
           <div className="navbar-collapse collapse" id="navbar">
               <ul className="nav navbar-nav">
