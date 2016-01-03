@@ -5,8 +5,8 @@ class UserCard extends React.Component {
   render() {
     return (
       <div className="col-lg-4">
-          <div className="contact-box">
-              <a href="profile.html">
+          <div className="user-box">
+            <a href="#">
               <div className="col-sm-4">
                   <div className="text-center">
                     <div className="m-t-xs img-responsive">
@@ -26,7 +26,7 @@ class UserCard extends React.Component {
                   </address>
               </div>
               <div className="clearfix"></div>
-              </a>
+            </a>
           </div>
       </div>
     );

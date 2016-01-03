@@ -12,14 +12,18 @@ export default class Container extends React.Component {
         <div className="container fh-container">
           <div className="panel panel-default">
             <div className="panel-body">
-              <div className="row" style={{borderBottom: "1px solid #ddd", paddingBottom: 10}}>
-                <div className="col-xs-8" style={{paddingTop: 5}}>
+              <div className="row">
+                <div className="col-xs-8 m-t-xs">
                   <h4>Chat Rooms</h4>
                 </div>
-                <div className="col-xs-4" style={{paddingTop: 10}}>
+                <div className="col-xs-4 m-t-sm">
                   <FilterInput filterAction={actions.setFilter} addText='Add Room' addAction={actions.addRoom}/>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="panel panel-default">
+            <div className="panel-body">
               <RoomList session={this.props.session} rooms={this.props.rooms}/>
             </div>
           </div>

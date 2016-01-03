@@ -1,0 +1,43 @@
+/* USERS */
+
+.user-box {
+  background-color: white;
+  border: 1px solid $border-color;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.user-box > a {
+  color: inherit;
+}
+
+.user-box.center-version {
+
+  border: 1px solid $border-color;
+  padding: 0;
+}
+
+.user-box.center-version > a {
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+}
+
+.user-box.center-version > a img {
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.user-box.center-version address {
+  margin-bottom: 0;
+}
+
+.user-box .user-box-footer {
+  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid $border-color;
+  padding: 15px 20px;
+}

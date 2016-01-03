@@ -7,11 +7,15 @@ export default class Detail extends React.Component {
     const room = this.props.session.activeRoom;
 
     return (
-      <div className="wrapper wrapper-content">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <RoomDetail room={room}/>
+      <div className="fh-content fh-fixed-nav fh-fixed-footer">
+        <div className="container fh-container">
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <div className="row">
+                <div className="col-lg-12">
+                  <RoomDetail room={room}/>
+                </div>
+              </div>
             </div>
           </div>
         </div>

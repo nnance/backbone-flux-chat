@@ -8,16 +8,22 @@ export default class Container extends React.Component {
 
   render() {
     return (
-      <div className="wrapper wrapper-content animated fadeInRight">
-        <div className="ibox">
-          <div className="ibox-title">
-            <h5>Users</h5>
+      <div className="fh-content fh-fixed-nav fh-fixed-footer">
+        <div className="container fh-container">
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <div className="row">
+                <div className="col-xs-8 m-t-xs">
+                  <h4>User</h4>
+                </div>
+                <div className="col-xs-4 m-t-sm">
+                  <FilterInput filterAction={actions.setFilter}/>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="ibox-content">
-            <FilterInput filterAction={actions.setFilter}/>
-          </div>
+          <UserList users={this.props.users} session={this.props.session}/>
         </div>
-        <UserList users={this.props.users} session={this.props.session}/>
       </div>
     );
   }
