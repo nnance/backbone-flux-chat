@@ -1,11 +1,10 @@
 import React from 'react';
-import UserList from '../../components/user_list';
-import FilterInput from '../../components/filter_input';
-import actions from '../../actions/user';
+import FilterInput from './filter_input';
+import RoomList from './room_list';
+import actions from '../actions/room';
 
 
 export default class Container extends React.Component {
-
   render() {
     return (
       <div className="fh-content fh-fixed-nav fh-fixed-footer">
@@ -14,15 +13,19 @@ export default class Container extends React.Component {
             <div className="panel-body">
               <div className="row">
                 <div className="col-xs-8 m-t-xs">
-                  <h4>User</h4>
+                  <h4>Chat Rooms</h4>
                 </div>
                 <div className="col-xs-4 m-t-sm">
-                  <FilterInput filterAction={actions.setFilter}/>
+                  <FilterInput filterAction={actions.setFilter} addText='Add Room' addAction={actions.addRoom}/>
                 </div>
               </div>
             </div>
           </div>
-          <UserList users={this.props.users} session={this.props.session}/>
+          <div className="panel panel-default">
+            <div className="panel-body">
+              <RoomList session={this.props.session} rooms={this.props.rooms}/>
+            </div>
+          </div>
         </div>
       </div>
     );

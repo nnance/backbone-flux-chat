@@ -3,22 +3,24 @@ import React from 'react';
 /*eslint-enable no-unused-vars*/
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
-import Home from './app/room/container';
-import Detail from './app/room/detail';
-import Container from './app/user/container';
+import Home from './components/room_container';
+import Detail from './components/room_detail_container';
+import UserContainer from './components/user_container';
+import ChatContainer from './components/chat_container';
 
 export default class Router extends Backbone.Router {
-  constructor(session, rooms, users, chat) {
+  constructor(session, rooms, users, chats) {
     super();
 
     this.session = session;
     this.rooms = rooms;
     this.users = users;
+    this.chats = chats;
 
     this.route('', '', this.showHome.bind(this));
     this.route('detail', 'room#showDetail', this.showDetail.bind(this));
     this.route('user', 'user#showList', this.showUserList.bind(this));
-    this.route('chat/:id', 'chat#showChat', chat.showChat.bind(chat));
+    this.route('chat/:id', 'chat#showChat', this.showChat.bind(this));
   }
 
   showHome() {
@@ -31,8 +33,13 @@ export default class Router extends Backbone.Router {
   }
 
   showUserList() {
-    ReactDOM.render(<Container session={this.session} users={this.users}/>, document.getElementById('body'));
+    ReactDOM.render(<UserContainer session={this.session} users={this.users}/>, document.getElementById('body'));
     this.users.fetch();
   }
 
+  showChat(room_id) {
+    this.chats.fetch({data: {room: room_id}});
+    // this.session.activeRoom = this.rooms.get(room_id);
+    ReactDOM.render(<ChatContainer chats={this.chats} users={this.users}/>, document.getElementById('body'));
+  }
 }

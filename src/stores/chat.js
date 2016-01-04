@@ -1,4 +1,6 @@
 import Backbone from 'backbone';
+import { BaseCollection } from './base';
+import RoomActions from '../actions/room';
 
 class ChatModel extends Backbone.Model {
   get date() {
@@ -22,7 +24,20 @@ class ChatModel extends Backbone.Model {
   }
 }
 
-export default class ChatCollection extends Backbone.Collection {
+export default class ChatCollection extends BaseCollection {
+  constructor(session, users) {
+    super();
+
+    this.session = session;
+    this.users = users;
+  }
+
+  initialize() {
+    this.actionHandlers = [
+      {type: RoomActions.ADD_CHAT_MSG, handler: this.addChatMessage}
+    ];
+    super.initialize();
+  }
 
   get model() {
     return ChatModel;
@@ -30,6 +45,15 @@ export default class ChatCollection extends Backbone.Collection {
 
   get url() {
     return '/api/chats';
+  }
+
+  addChatMessage(action) {
+    var msg = {
+      text: aciton.msg,
+      user: this.users.at(0).id,
+      room: this.session.activeRoom.id
+    };
+    this.chats.add(msg);
   }
 
   filteredByUser(filter) {

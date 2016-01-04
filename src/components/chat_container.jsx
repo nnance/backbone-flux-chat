@@ -1,7 +1,7 @@
 import React from 'react';
-import ChatDiscussion from '../../components/chat_discussion';
-import ChatUsers from '../../components/chat_users';
-import ChatMessage from '../../components/chat_message';
+import ChatDiscussion from './chat_discussion';
+import ChatUsers from './chat_users';
+import ChatMessage from './chat_message';
 
 
 export default class Detail extends React.Component {

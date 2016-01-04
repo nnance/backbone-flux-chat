@@ -1,5 +1,5 @@
 import React from 'react';
-import RoomDetail from '../../components/room_detail';
+import RoomDetail from './room_detail';
 
 export default class Detail extends React.Component {
 

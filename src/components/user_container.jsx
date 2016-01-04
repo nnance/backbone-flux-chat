@@ -1,7 +1,7 @@
 import React from 'react';
-import FilterInput from '../../components/filter_input';
-import RoomList from '../../components/room_list';
-import actions from '../../actions/room';
+import UserList from './user_list';
+import FilterInput from './filter_input';
+import actions from '../actions/user';
 
 
 export default class Container extends React.Component {
@@ -14,19 +14,15 @@ export default class Container extends React.Component {
             <div className="panel-body">
               <div className="row">
                 <div className="col-xs-8 m-t-xs">
-                  <h4>Chat Rooms</h4>
+                  <h4>User</h4>
                 </div>
                 <div className="col-xs-4 m-t-sm">
-                  <FilterInput filterAction={actions.setFilter} addText='Add Room' addAction={actions.addRoom}/>
+                  <FilterInput filterAction={actions.setFilter}/>
                 </div>
               </div>
             </div>
           </div>
-          <div className="panel panel-default">
-            <div className="panel-body">
-              <RoomList session={this.props.session} rooms={this.props.rooms}/>
-            </div>
-          </div>
+          <UserList users={this.props.users} session={this.props.session}/>
         </div>
       </div>
     );
