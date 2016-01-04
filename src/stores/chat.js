@@ -49,11 +49,11 @@ export default class ChatCollection extends BaseCollection {
 
   addChatMessage(action) {
     var msg = {
-      text: aciton.msg,
+      text: action.msg,
       user: this.users.at(0).id,
       room: this.session.activeRoom.id
     };
-    this.chats.add(msg);
+    this.add(msg);
   }
 
   filteredByUser(filter) {
