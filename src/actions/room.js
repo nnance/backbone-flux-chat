@@ -51,7 +51,8 @@ module.exports = {
   },
 
   addChatMessage: function(msg) {
-    Backbone.trigger(addChatMessage, {
+    Dispatcher.dispatch({
+      type: addChatMessage,
       msg: msg
     });
   }

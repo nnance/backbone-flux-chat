@@ -11,18 +11,16 @@ import Chats from './stores/chat';
 import Session from './stores/session';
 
 import App from './app/app_controller';
-import User from './app/user/user_controller';
 import Chat from './app/chat/chat_controller';
-import Router from './app/router';
+import Router from './router';
 
 var session = new Session();
 var rooms = new Rooms();
 var users = new Users();
 var chats = new Chats();
 
-var user = new User(session, users);
 var chat = new Chat(session, chats, rooms, users);
-var router = new Router(session, rooms, user, chat);
+var router = new Router(session, rooms, users, chat);
 
 var app = new App(router, session, rooms, users);
 app.showApp();
