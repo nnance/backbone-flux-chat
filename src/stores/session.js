@@ -1,7 +1,24 @@
 import Backbone from 'backbone';
+import { BaseModel } from './base';
+import RoomActions from '../actions/room';
 
+export default class SessionModel extends BaseModel {
+  initialize() {
+    this.actionHandlers = [
+      {type: RoomActions.ROOM_FILTER, handler: this.setFilter},
+      {type: RoomActions.ROOM_SELECTED, handler: this.setRoom},
+      {type: RoomActions.ROOM_START_CHAT, handler: this.setRoom}
+    ];
+    super.initialize();
+  }
 
-export default class SessionModel extends Backbone.Model {
+  setFilter(action) {
+    this.set('roomFilter', action.filter);
+  }
+
+  setRoom(action) {
+    this.set('activeRoom', action.room);
+  }
 
   get defaults() {
     return {
@@ -25,10 +42,6 @@ export default class SessionModel extends Backbone.Model {
     return this.get('roomFilter') || '';
   }
 
-  set roomFilter(value) {
-    this.set('roomFilter', value);
-  }
-
   get userFilter() {
     return this.get('userFilter') || '';
   }
@@ -39,10 +52,6 @@ export default class SessionModel extends Backbone.Model {
 
   get activeRoom() {
     return this.get('activeRoom');
-  }
-
-  set activeRoom(room) {
-    this.set('activeRoom', room);
   }
 
 }

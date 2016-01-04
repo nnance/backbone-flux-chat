@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import Dispatcher from '../dispatcher';
 
 const showRooms = 'SHOW_ROOMS';
 const roomFilter = 'ROOM_FILTER';
@@ -16,29 +17,35 @@ module.exports = {
   ADD_CHAT_MSG: addChatMessage,
 
   showRooms: function() {
-    Backbone.trigger(showRooms);
+    Backbone.history.navigate('', {trigger: true});
   },
 
   setFilter: function(value) {
-    Backbone.trigger(roomFilter, {
+    Dispatcher.dispatch({
+      type: roomFilter,
       filter: value
     });
   },
 
   selectRoom: function(room) {
-    Backbone.trigger(roomSelected, {
+    Dispatcher.dispatch({
+      type: roomSelected,
       room: room
     });
+    Backbone.history.navigate('detail', {trigger: true});
   },
 
   startChat: function(room) {
-    Backbone.trigger(roomStartChat, {
+    Dispatcher.dispatch({
+      type: roomStartChat,
       room: room
     });
+    Backbone.history.navigate('chat/' + room.id, {trigger: true});
   },
 
   addRoom: function(title) {
-    Backbone.trigger(roomAdd, {
+    Dispatcher.dispatch({
+      type: roomAdd,
       title: title
     });
   },

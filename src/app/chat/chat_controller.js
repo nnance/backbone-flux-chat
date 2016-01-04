@@ -19,7 +19,7 @@ export default class ChatController {
 
   showChat(room_id) {
     this.chats.fetch({data: {room: room_id}});
-    this.session.activeRoom = this.rooms.get(room_id);
+    // this.session.activeRoom = this.rooms.get(room_id);
     ReactDOM.render(<Container chats={this.chats} users={this.users}/>, document.getElementById('body'));
   }
 
