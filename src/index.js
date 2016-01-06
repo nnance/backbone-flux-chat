@@ -18,21 +18,20 @@ import Session from './stores/session';
 import Router from './router';
 import App from './components/app_container';
 
-var session = new Session();
 var rooms = new Rooms();
+var session = new Session({},{rooms: rooms});
 var users = new Users();
 var chats = new Chats(session, rooms);
 
 var router = new Router(session, rooms, users, chats);
 
-(function(){
-  ReactDOM.render(<App session={session}/>, document.getElementById('root'));
-  // prefetch data before starting the router.  this will also allow for
-  // signing on the user when needed
-  Promise.all([rooms.fetch(), users.fetch()])
-    .then(() => {
-      Backbone.history.start({ pushState: true })
-      var socket = io();
-      socket.on('connect', () => console.log('connected'));
-    });
-})();
+ReactDOM.render(<App session={session}/>, document.getElementById('root'));
+// prefetch data before starting the router.  this will also allow for
+// signing on the user when needed
+Promise
+  .all([rooms.fetch(), users.fetch()])
+  .then(() => {
+    Backbone.history.start({ pushState: true })
+    var socket = io();
+    socket.on('connect', () => console.log('connected'));
+  });

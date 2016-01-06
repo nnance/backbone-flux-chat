@@ -6,6 +6,7 @@ const roomFilter = 'ROOM_FILTER';
 const roomSelected = 'ROOM_SELECTED';
 const roomStartChat = 'ROOM_START_CHAT';
 const roomAdd = 'ROOM_ADD';
+const roomTransition = 'ROOM_TRANSITION';
 const addChatMessage = 'ADD_CHAT_MSG';
 
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
   ROOM_SELECTED: roomSelected,
   ROOM_START_CHAT: roomStartChat,
   ROOM_ADD: roomAdd,
+  ROOM_TRANSITION: roomTransition,
   ADD_CHAT_MSG: addChatMessage,
 
   showRooms: function() {
@@ -32,7 +34,14 @@ module.exports = {
       type: roomSelected,
       room: room
     });
-    Backbone.history.navigate('detail', {trigger: true});
+    Backbone.history.navigate('detail/' + room.id, {trigger: true});
+  },
+
+  roomTransition: function(roomId) {
+    Dispatcher.dispatch({
+      type: roomTransition,
+      roomId: roomId
+    });
   },
 
   startChat: function(room) {

@@ -4,14 +4,17 @@ import RoomActions from '../actions/room';
 import UserActions from '../actions/user';
 
 export default class SessionModel extends BaseModel {
-  initialize() {
+  initialize(attr, options) {
     this.actionHandlers = [
       {type: RoomActions.ROOM_FILTER, handler: this.setRoomFilter},
-      {type: RoomActions.ROOM_SELECTED, handler: this.setRoom},
+      {type: RoomActions.ROOM_TRANSITION, handler: this.setRoom},
       {type: RoomActions.ROOM_START_CHAT, handler: this.setRoom},
       {type: UserActions.FILTER_USERS, handler: this.setUserFilter}
     ];
-    super.initialize();
+    if (options.rooms) {
+      this.rooms = options.rooms;
+    }
+    super.initialize(options);
   }
 
   setRoomFilter(action) {
@@ -19,7 +22,13 @@ export default class SessionModel extends BaseModel {
   }
 
   setRoom(action) {
-    this.set('activeRoom', action.room);
+    var room;
+    if (action.roomId) {
+      room = this.rooms.get(action.roomId);
+    } else {
+      room = action.room;
+    }
+    this.set('activeRoom', room);
   }
 
   setUserFilter(action) {
