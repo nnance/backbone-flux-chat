@@ -1,4 +1,5 @@
 import React from 'react';
+import sessionStore from '../stores/session';
 import UserList from './user_list';
 import FilterInput from './filter_input';
 import actions from '../actions/user';
@@ -22,7 +23,7 @@ export default class Container extends React.Component {
               </div>
             </div>
           </div>
-          <UserList users={this.props.users} session={this.props.session}/>
+          <UserList users={this.props.users} session={sessionStore.getSession()}/>
         </div>
       </div>
     );

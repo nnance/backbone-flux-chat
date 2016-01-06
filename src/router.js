@@ -10,10 +10,9 @@ import UserContainer from './components/user_container';
 import ChatContainer from './components/chat_container';
 
 export default class Router extends Backbone.Router {
-  constructor(session, rooms, users, chats) {
+  constructor(rooms, users, chats) {
     super();
 
-    this.session = session;
     this.rooms = rooms;
     this.users = users;
     this.chats = chats;
@@ -25,17 +24,17 @@ export default class Router extends Backbone.Router {
   }
 
   showHome() {
-    ReactDOM.render(<Home session={this.session} rooms={this.rooms}/>, document.getElementById('body'));
+    ReactDOM.render(<Home rooms={this.rooms}/>, document.getElementById('body'));
     this.rooms.fetch();
   }
 
   showDetail(id) {
     RoomActions.roomTransition(id);
-    ReactDOM.render(<Detail session={this.session}/>, document.getElementById('body'));
+    ReactDOM.render(<Detail/>, document.getElementById('body'));
   }
 
   showUserList() {
-    ReactDOM.render(<UserContainer session={this.session} users={this.users}/>, document.getElementById('body'));
+    ReactDOM.render(<UserContainer users={this.users}/>, document.getElementById('body'));
     this.users.fetch();
   }
 

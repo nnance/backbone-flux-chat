@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import sessionStore from './session';
 import { BaseCollection } from './base';
 import RoomActions from '../actions/room';
 
@@ -25,10 +26,9 @@ class ChatModel extends Backbone.Model {
 }
 
 export default class ChatCollection extends BaseCollection {
-  constructor(session, users) {
+  constructor(users) {
     super();
 
-    this.session = session;
     this.users = users;
   }
 
@@ -51,7 +51,7 @@ export default class ChatCollection extends BaseCollection {
     var msg = {
       text: action.msg,
       user: this.users.at(0).id,
-      room: this.session.activeRoom.id
+      room: sessionStore.getSession().activeRoom.id
     };
     this.add(msg);
   }

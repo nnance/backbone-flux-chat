@@ -14,18 +14,16 @@ import '../styles/index.scss';
 import Rooms from './stores/room';
 import Users from './stores/user';
 import Chats from './stores/chat';
-import Session from './stores/session';
 import Router from './router';
 import App from './components/app_container';
 
 var rooms = new Rooms();
-var session = new Session({},{rooms: rooms});
 var users = new Users();
-var chats = new Chats(session, rooms);
+var chats = new Chats(rooms);
 
-var router = new Router(session, rooms, users, chats);
+var router = new Router(rooms, users, chats);
 
-ReactDOM.render(<App session={session}/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
 // prefetch data before starting the router.  this will also allow for
 // signing on the user when needed
 Promise

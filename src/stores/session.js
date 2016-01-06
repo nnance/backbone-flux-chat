@@ -3,18 +3,18 @@ import { BaseModel } from './base';
 import RoomActions from '../actions/room';
 import UserActions from '../actions/user';
 
-export default class SessionModel extends BaseModel {
-  initialize(attr, options) {
+class SessionModel extends BaseModel {
+  initialize() {
     this.actionHandlers = [
       {type: RoomActions.ROOM_FILTER, handler: this.setRoomFilter},
       {type: RoomActions.ROOM_TRANSITION, handler: this.setRoom},
       {type: RoomActions.ROOM_START_CHAT, handler: this.setRoom},
       {type: UserActions.FILTER_USERS, handler: this.setUserFilter}
     ];
-    if (options.rooms) {
-      this.rooms = options.rooms;
-    }
-    super.initialize(options);
+    // if (options.rooms) {
+    //   this.rooms = options.rooms;
+    // }
+    super.initialize();
   }
 
   setRoomFilter(action) {
@@ -66,3 +66,21 @@ export default class SessionModel extends BaseModel {
   }
 
 }
+
+class SessionStore {
+  getSession() {
+    if (!this.session) {
+      this.session = new SessionModel();
+    }
+    return this.session;
+  }
+
+  clear() {
+    if (this.session) {
+      this.session.off();
+      this.session = null;
+    }
+  }
+}
+
+module.exports = new SessionStore();

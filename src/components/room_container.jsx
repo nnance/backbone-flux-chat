@@ -1,4 +1,5 @@
 import React from 'react';
+import sessionStore from '../stores/session';
 import FilterInput from './filter_input';
 import RoomList from './room_list';
 import actions from '../actions/room';
@@ -23,7 +24,7 @@ export default class Container extends React.Component {
           </div>
           <div className="panel panel-default">
             <div className="panel-body">
-              <RoomList session={this.props.session} rooms={this.props.rooms}/>
+              <RoomList session={sessionStore.getSession()} rooms={this.props.rooms}/>
             </div>
           </div>
         </div>
