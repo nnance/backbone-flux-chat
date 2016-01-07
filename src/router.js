@@ -4,7 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
 import RoomActions from './actions/room';
-import UserActions from './actions/user';
 import Home from './components/room_container';
 import Detail from './components/room_detail_container';
 import UserContainer from './components/user_container';
@@ -17,7 +16,7 @@ export default class Router extends Backbone.Router {
       'detail/:id': 'showDetail',
       'user':       'showUserList',
       'chat/:id':   'showChat'
-    }
+    };
   }
 
   getBody() {

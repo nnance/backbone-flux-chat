@@ -6,7 +6,7 @@ import React from 'react';
 /*eslint-enable no-unused-vars*/
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 
 // styles
 import '../styles/index.scss';
@@ -16,7 +16,9 @@ import userStore from './stores/user';
 import Router from './router';
 import App from './components/app_container';
 
+/*eslint-disable no-unused-vars*/
 var router = new Router();
+/*eslint-enable no-unused-vars*/
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 // prefetch data before starting the router.  this will also allow for
@@ -24,7 +26,7 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 Promise
   .all([roomStore.fetch(), userStore.fetch()])
   .then(() => {
-    Backbone.history.start({ pushState: true })
-    var socket = io();
-    socket.on('connect', () => console.log('connected'));
+    Backbone.history.start({ pushState: true });
+    // var socket = io();
+    // socket.on('connect', () => console.log('connected'));
   });

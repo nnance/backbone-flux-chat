@@ -6,7 +6,7 @@ class UserModel extends Backbone.Model {
   defaults() {
     return {
       online: false
-    }
+    };
   }
 
   get name() {

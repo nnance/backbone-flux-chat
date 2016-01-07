@@ -11,7 +11,7 @@ module.exports = {
   showUsers: function() {
     Backbone.history.navigate('/user', {trigger: true});
     dispatcher.dispatch({
-      type: showUsers,
+      type: showUsers
     });
   },
 
