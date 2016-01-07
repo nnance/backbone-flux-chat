@@ -1,10 +1,9 @@
 import React from 'react';
-import actions from '../actions/room';
 
 
 class ChatMessage extends React.Component {
   addChatMessage(event) {
-    actions.addChatMessage(this.refs.message.value);
+    this.props.chatAction.call(this, this.refs.message.value);
     this.refs.message.value = '';
   }
 

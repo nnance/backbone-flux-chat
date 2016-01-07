@@ -1,5 +1,6 @@
 import Backbone from 'backbone';
-
+import dispatcher from '../dispatcher';
+import UserActions from '../actions/user';
 
 class UserModel extends Backbone.Model {
   defaults() {
@@ -42,8 +43,7 @@ class UserModel extends Backbone.Model {
   }
 }
 
-export default class UserCollection extends Backbone.Collection {
-
+class UserCollection extends Backbone.Collection {
   get model() {
     return UserModel;
   }
@@ -52,11 +52,47 @@ export default class UserCollection extends Backbone.Collection {
     return '/api/users';
   }
 
-  filteredByName(filter) {
-    if (filter.length === 0) {
-      return this.models;
-    } else {
-      return this.filter((item) => item.name.indexOf(filter) >= 0);
+}
+
+class UserStore {
+  constructor() {
+    this.dispatchToken = dispatcher.register(this.dispatchHandler.bind(this));
+  }
+
+  dispatchHandler(action) {
+    switch(action.type) {
+      case UserActions.SHOW_USERS:
+        this.fetch();
+        break;
+
+      default:
+        // do nothing
     }
   }
+
+  fetch() {
+    return this.getUsers().fetch();
+  }
+
+  getUsers() {
+    if (!this.users) {
+      this.users = new UserCollection();
+    }
+    return this.users;
+  }
+
+  filteredByName(filter) {
+    if (filter.length === 0) {
+      return this.getUsers().models;
+    } else {
+      return this.getUsers().filter((item) => item.name.indexOf(filter) >= 0);
+    }
+  }
+
+  clear() {
+    this.users.off();
+    this.users = null;
+  }
 }
+
+module.exports = new UserStore();

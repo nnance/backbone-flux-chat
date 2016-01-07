@@ -1,5 +1,5 @@
 import Backbone from 'backbone';
-import Dispatcher from '../dispatcher';
+import dispatcher from '../dispatcher';
 
 const showUsers = 'SHOW_USERS';
 const filterUsers = 'FILTER_USERS';
@@ -10,10 +10,13 @@ module.exports = {
 
   showUsers: function() {
     Backbone.history.navigate('/user', {trigger: true});
+    dispatcher.dispatch({
+      type: showUsers,
+    });
   },
 
   setFilter: function(value) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: filterUsers,
       filter: value
     });

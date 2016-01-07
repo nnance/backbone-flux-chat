@@ -1,11 +1,17 @@
 import React from 'react';
+import BackboneReact from '../lib/backbonereact';
+
 import sessionStore from '../stores/session';
+import userStore from '../stores/user';
 import UserList from './user_list';
 import FilterInput from './filter_input';
 import actions from '../actions/user';
 
 
-export default class Container extends React.Component {
+class Container extends React.Component {
+  bindings() {
+    return [userStore.getUsers(), sessionStore.getSession()];
+  }
 
   render() {
     return (
@@ -23,9 +29,11 @@ export default class Container extends React.Component {
               </div>
             </div>
           </div>
-          <UserList users={this.props.users} session={sessionStore.getSession()}/>
+          <UserList userStore={userStore} sessionStore={sessionStore}/>
         </div>
       </div>
     );
   }
 }
+
+export default BackboneReact(Container);

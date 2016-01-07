@@ -4,43 +4,41 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
 import RoomActions from './actions/room';
+import UserActions from './actions/user';
 import Home from './components/room_container';
 import Detail from './components/room_detail_container';
 import UserContainer from './components/user_container';
 import ChatContainer from './components/chat_container';
 
 export default class Router extends Backbone.Router {
-  constructor(rooms, users, chats) {
-    super();
+  get routes() {
+    return {
+      '':           'showHome',
+      'detail/:id': 'showDetail',
+      'user':       'showUserList',
+      'chat/:id':   'showChat'
+    }
+  }
 
-    this.rooms = rooms;
-    this.users = users;
-    this.chats = chats;
-
-    this.route('', '', this.showHome.bind(this));
-    this.route('detail/:id', 'room#showDetail', this.showDetail.bind(this));
-    this.route('user', 'user#showList', this.showUserList.bind(this));
-    this.route('chat/:id', 'chat#showChat', this.showChat.bind(this));
+  getBody() {
+    return document.getElementById('body');
   }
 
   showHome() {
-    ReactDOM.render(<Home rooms={this.rooms}/>, document.getElementById('body'));
-    this.rooms.fetch();
+    ReactDOM.render(<Home/>, this.getBody());
   }
 
   showDetail(id) {
     RoomActions.roomTransition(id);
-    ReactDOM.render(<Detail/>, document.getElementById('body'));
+    ReactDOM.render(<Detail/>, this.getBody());
   }
 
   showUserList() {
-    ReactDOM.render(<UserContainer users={this.users}/>, document.getElementById('body'));
-    this.users.fetch();
+    ReactDOM.render(<UserContainer/>, this.getBody());
   }
 
   showChat(id) {
-    this.chats.fetch({data: {room: id}});
     RoomActions.roomTransition(id);
-    ReactDOM.render(<ChatContainer chats={this.chats} users={this.users}/>, document.getElementById('body'));
+    ReactDOM.render(<ChatContainer/>, this.getBody());
   }
 }

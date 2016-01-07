@@ -11,23 +11,18 @@ import io from 'socket.io-client';
 // styles
 import '../styles/index.scss';
 
-import Rooms from './stores/room';
-import Users from './stores/user';
-import Chats from './stores/chat';
+import roomStore from './stores/room';
+import userStore from './stores/user';
 import Router from './router';
 import App from './components/app_container';
 
-var rooms = new Rooms();
-var users = new Users();
-var chats = new Chats(rooms);
-
-var router = new Router(rooms, users, chats);
+var router = new Router();
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 // prefetch data before starting the router.  this will also allow for
 // signing on the user when needed
 Promise
-  .all([rooms.fetch(), users.fetch()])
+  .all([roomStore.fetch(), userStore.fetch()])
   .then(() => {
     Backbone.history.start({ pushState: true })
     var socket = io();

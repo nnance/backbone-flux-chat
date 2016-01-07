@@ -1,29 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BackboneReact from '../lib/backbonereact';
 import Avatar from 'react-avatar';
 
 
-class ChatDiscussion extends React.Component {
-  bindings() {
-    return this.props.chats;
-  }
-
+export default class ChatDiscussion extends React.Component {
   componentDidUpdate() {
     var elem = ReactDOM.findDOMNode(this.refs.discussion);
     elem.scrollTop = elem.scrollHeight;
-  }
-
-  getUser(chat) {
-    return this.props.users.get(chat.user);
   }
 
   render() {
     return (
       <div className="chat-discussion" ref="discussion">
         {
-          this.props.chats.map((chat, index) => {
-            var user = this.getUser(chat);
+          this.props.chatStore.getChats().map((chat, index) => {
+            var user = this.props.userStore.getUsers().get(chat.user);
             return (
               <div className={'chat-message ' + (index % 2 ? 'right' : 'left')} key={chat.id}>
                   <div className="message-avatar">
@@ -42,5 +33,3 @@ class ChatDiscussion extends React.Component {
     );
   }
 }
-
-export default BackboneReact(ChatDiscussion);

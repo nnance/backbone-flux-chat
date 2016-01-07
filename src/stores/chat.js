@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
+import dispatcher from '../dispatcher';
 import sessionStore from './session';
-import { BaseCollection } from './base';
+import userStore from './user';
 import RoomActions from '../actions/room';
 
 class ChatModel extends Backbone.Model {
@@ -25,20 +26,7 @@ class ChatModel extends Backbone.Model {
   }
 }
 
-export default class ChatCollection extends BaseCollection {
-  constructor(users) {
-    super();
-
-    this.users = users;
-  }
-
-  initialize() {
-    this.actionHandlers = [
-      {type: RoomActions.ADD_CHAT_MSG, handler: this.addChatMessage}
-    ];
-    super.initialize();
-  }
-
+class ChatCollection extends Backbone.Collection {
   get model() {
     return ChatModel;
   }
@@ -47,21 +35,55 @@ export default class ChatCollection extends BaseCollection {
     return '/api/chats';
   }
 
+}
+
+class ChatStore {
+  constructor() {
+    this.dispatchToken = dispatcher.register(this.dispatchHandler.bind(this));
+  }
+
+  dispatchHandler(action) {
+    switch(action.type) {
+      case RoomActions.ADD_CHAT_MSG:
+        this.addChatMessage(action);
+        break;
+      case RoomActions.ROOM_TRANSITION:
+        dispatcher.waitFor([sessionStore.dispatchToken]);
+        this.getChats().fetch({data: {room: sessionStore.getSession().activeRoom.id}});
+        break;
+      default:
+        // do nothing
+    }
+  }
+
   addChatMessage(action) {
     var msg = {
       text: action.msg,
-      user: this.users.at(0).id,
+      user: userStore.getUsers().at(0).id,
       room: sessionStore.getSession().activeRoom.id
     };
-    this.add(msg);
+    this.getChats().add(msg);
   }
 
   filteredByUser(filter) {
     if (!filter || filter.length === 0) {
-      return this.models;
+      return this.getChats().models;
     } else {
-      return this.filter((item) => item.user === filter);
+      return this.getChats().filter((item) => item.user === filter);
     }
   }
 
+  getChats() {
+    if (!this.chats) {
+      this.chats = new ChatCollection();
+    }
+    return this.chats;
+  }
+
+  clear() {
+    this.chats.off();
+    this.chats = null;
+  }
 }
+
+module.exports = new ChatStore();

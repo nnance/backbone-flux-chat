@@ -1,22 +1,15 @@
 import React from 'react';
-import BackboneReact from '../lib/backbonereact';
 import UserCard from './user_card';
 
-class UserList extends React.Component {
-  bindings() {
-    return [this.props.users, this.props.session];
-  }
-
+export default class UserList extends React.Component {
   render() {
-    const filter = this.props.session.userFilter;
+    const filter = this.props.sessionStore.getSession().userFilter;
     return (
         <div className="row">
-          {this.props.users.filteredByName(filter).map((user) =>
+          {this.props.userStore.filteredByName(filter).map((user) =>
             <UserCard user={user} key={user.id}/>
           )}
         </div>
     );
   }
 }
-
-export default BackboneReact(UserList);

@@ -1,10 +1,18 @@
 import React from 'react';
+import BackboneReact from '../lib/backbonereact';
+
+import actions from '../actions/room';
+import userStore from '../stores/user';
+import chatStore from '../stores/chat';
 import ChatDiscussion from './chat_discussion';
 import ChatUsers from './chat_users';
 import ChatMessage from './chat_message';
 
 
-export default class Detail extends React.Component {
+class Container extends React.Component {
+  bindings() {
+    return [userStore.getUsers(), chatStore.getChats()];
+  }
 
   render() {
     return (
@@ -21,10 +29,12 @@ export default class Detail extends React.Component {
             </div>
           </div>
         </div>
-        <ChatDiscussion chats={this.props.chats} users={this.props.users}/>
-        <ChatMessage />
-        <ChatUsers users={this.props.users}/>
+        <ChatDiscussion chatStore={chatStore} userStore={userStore}/>
+        <ChatMessage chatAction={actions.addChatMessage}/>
+        <ChatUsers userStore={userStore}/>
       </div>
     );
   }
 }
+
+export default BackboneReact(Container);

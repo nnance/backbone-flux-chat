@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from 'react-avatar';
 
-class UserCard extends React.Component {
+export default class UserCard extends React.Component {
   render() {
     return (
       <div className="col-lg-4">
@@ -32,5 +32,3 @@ class UserCard extends React.Component {
     );
   }
 }
-
-export default UserCard;

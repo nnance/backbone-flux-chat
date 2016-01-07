@@ -1,5 +1,5 @@
 import Backbone from 'backbone';
-import Dispatcher from '../dispatcher';
+import dispatcher from '../dispatcher';
 
 const showRooms = 'SHOW_ROOMS';
 const roomFilter = 'ROOM_FILTER';
@@ -23,14 +23,14 @@ module.exports = {
   },
 
   setFilter: function(value) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: roomFilter,
       filter: value
     });
   },
 
   selectRoom: function(room) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: roomSelected,
       room: room
     });
@@ -38,14 +38,14 @@ module.exports = {
   },
 
   roomTransition: function(roomId) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: roomTransition,
       roomId: roomId
     });
   },
 
   startChat: function(room) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: roomStartChat,
       room: room
     });
@@ -53,14 +53,14 @@ module.exports = {
   },
 
   addRoom: function(title) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: roomAdd,
       title: title
     });
   },
 
   addChatMessage: function(msg) {
-    Dispatcher.dispatch({
+    dispatcher.dispatch({
       type: addChatMessage,
       msg: msg
     });

@@ -2,7 +2,6 @@ import React from 'react';
 
 
 export default class RoomDetail extends React.Component {
-
   render() {
     return (
       <div className="wrapper wrapper-content">

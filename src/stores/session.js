@@ -1,40 +1,11 @@
 import Backbone from 'backbone';
-import { BaseModel } from './base';
+import dispatcher from '../dispatcher';
+import roomStore from './room';
 import RoomActions from '../actions/room';
 import UserActions from '../actions/user';
 
-class SessionModel extends BaseModel {
-  initialize() {
-    this.actionHandlers = [
-      {type: RoomActions.ROOM_FILTER, handler: this.setRoomFilter},
-      {type: RoomActions.ROOM_TRANSITION, handler: this.setRoom},
-      {type: RoomActions.ROOM_START_CHAT, handler: this.setRoom},
-      {type: UserActions.FILTER_USERS, handler: this.setUserFilter}
-    ];
-    // if (options.rooms) {
-    //   this.rooms = options.rooms;
-    // }
-    super.initialize();
-  }
 
-  setRoomFilter(action) {
-    this.set('roomFilter', action.filter);
-  }
-
-  setRoom(action) {
-    var room;
-    if (action.roomId) {
-      room = this.rooms.get(action.roomId);
-    } else {
-      room = action.room;
-    }
-    this.set('activeRoom', room);
-  }
-
-  setUserFilter(action) {
-    this.set('userFilter', action.filter);
-  }
-
+class SessionModel extends Backbone.Model {
   get defaults() {
     return {
       currentState: 'idle'
@@ -68,6 +39,34 @@ class SessionModel extends BaseModel {
 }
 
 class SessionStore {
+  constructor() {
+    this.dispatchToken = dispatcher.register(this.dispatchHandler.bind(this));
+  }
+
+  dispatchHandler(action) {
+    switch(action.type) {
+      case RoomActions.ROOM_FILTER:
+        this.getSession().set('roomFilter', action.filter);
+        break;
+      case RoomActions.ROOM_TRANSITION:
+        this.setRoom(action);
+        break;
+      case RoomActions.ROOM_START_CHAT:
+        this.setRoom(action);
+        break;
+      case UserActions.FILTER_USERS:
+        this.getSession().set('userFilter', action.filter);
+        break;
+      default:
+        // do nothing
+    }
+  }
+
+  setRoom(action) {
+    var room = action.roomId ? roomStore.getRooms().get(action.roomId) : action.room;
+    this.getSession().set('activeRoom', room);
+  }
+
   getSession() {
     if (!this.session) {
       this.session = new SessionModel();

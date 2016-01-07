@@ -1,18 +1,13 @@
 import React from 'react';
-import BackboneReact from '../lib/backbonereact';
 import Avatar from 'react-avatar';
 
 
-class ChatUsers extends React.Component {
-  bindings() {
-    return this.props.users;
-  }
-
+export default class ChatUsers extends React.Component {
   render() {
     return (
       <div className="chat-users">
           <div className="users-list">
-            {this.props.users.map((user) =>
+            {this.props.userStore.getUsers().map((user) =>
               <div className="chat-user" key={user.id}>
                   <span className="pull-right label label-primary">{user.isOnline ? 'Online' : ''}</span>
                   <div className="chat-avatar">
@@ -28,5 +23,3 @@ class ChatUsers extends React.Component {
     );
   }
 }
-
-export default BackboneReact(ChatUsers);

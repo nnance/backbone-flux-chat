@@ -1,11 +1,18 @@
 import React from 'react';
+import BackboneReact from '../lib/backbonereact';
+
 import sessionStore from '../stores/session';
+import roomStore from '../stores/room';
 import FilterInput from './filter_input';
 import RoomList from './room_list';
 import actions from '../actions/room';
 
 
-export default class Container extends React.Component {
+class Container extends React.Component {
+  bindings() {
+    return [sessionStore.getSession(), roomStore.getRooms()];
+  }
+
   render() {
     return (
       <div className="fh-content fh-fixed-nav fh-fixed-footer">
@@ -24,7 +31,12 @@ export default class Container extends React.Component {
           </div>
           <div className="panel panel-default">
             <div className="panel-body">
-              <RoomList session={sessionStore.getSession()} rooms={this.props.rooms}/>
+              <RoomList
+                sessionStore={sessionStore}
+                roomStore={roomStore}
+                selectAction={actions.selectRoom}
+                chatAction={actions.startChat}
+              />
             </div>
           </div>
         </div>
@@ -32,3 +44,5 @@ export default class Container extends React.Component {
     );
   }
 }
+
+export default BackboneReact(Container);

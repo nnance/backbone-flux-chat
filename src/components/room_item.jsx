@@ -1,16 +1,15 @@
 import React from 'react';
-import actions from '../actions/room';
 
 
 class RoomItem extends React.Component {
   view(e) {
     e.preventDefault();
-    actions.selectRoom(this.props.room);
+    this.props.selectAction.call(this, this.props.room);
   }
 
   selected(e) {
     e.preventDefault();
-    actions.startChat(this.props.room);
+    this.props.chatAction.call(this, this.props.room);
   }
 
   render() {
