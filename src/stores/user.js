@@ -64,10 +64,17 @@ class UserStore {
       case UserActions.SHOW_USERS:
         this.fetch();
         break;
+      case UserActions.LOGIN_USER:
+        this.login(action);
+        break;
 
       default:
         // do nothing
     }
+  }
+
+  login(action) {
+    this.getUsers().create({name: action.name}, {wait: true});
   }
 
   fetch() {

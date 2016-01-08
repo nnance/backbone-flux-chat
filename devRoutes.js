@@ -7,6 +7,7 @@ var expressRoutes = function(app, io) {
   app.get('/api/users', (req, res) => res.send(users));
   app.get('/api/chats', (req, res) => res.send(chats.filter((chat) => chat.room == req.query.room)));
   app.post('/api/rooms', addRoom);
+  app.post('/api/users', addUser.bind(io));
   app.post('/api/chats', addChat.bind(io));
 };
 
@@ -28,6 +29,22 @@ var addRoom = function(req, res, next) {
   room.id = nextId(rooms);
   rooms.push(room);
   res.send(room);
+};
+
+var addUser = function(req, res, next) {
+  var user = req.body;
+  user.id = nextId(users);
+  user.online = true;
+  existing = users.filter((u) => u.name === user.name);
+  if (existing.length > 0) {
+    user = existing[0];
+    user.online = true;
+    this.emit('users:changed', user);
+  } else {
+    users.push(user);
+    this.emit('users:added', user);
+  }
+  res.send(user);
 };
 
 var addChat = function(req, res, next) {

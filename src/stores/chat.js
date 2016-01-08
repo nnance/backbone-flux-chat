@@ -60,10 +60,11 @@ class ChatStore {
   }
 
   addChatMessage(action) {
+    var session = sessionStore.getSession();
     var msg = {
       text: action.msg,
-      user: userStore.getUsers().at(0).id,
-      room: sessionStore.getSession().activeRoom.id
+      user: userStore.filteredByName(session.userName)[0].id,
+      room: session.activeRoom.id
     };
     this.getChats().create(msg, {wait: true});
   }

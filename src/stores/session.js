@@ -1,5 +1,6 @@
 import Backbone from 'backbone';
 import dispatcher from '../dispatcher';
+import userStore from './room';
 import roomStore from './room';
 import RoomActions from '../actions/room';
 import UserActions from '../actions/user';
@@ -10,6 +11,14 @@ class SessionModel extends Backbone.Model {
     return {
       currentState: 'idle'
     };
+  }
+
+  get userName() {
+    return this.get('userName');
+  }
+
+  get isLoggedIn() {
+    return this.userName && this.userName.length > 0;
   }
 
   get isActive() {
@@ -45,6 +54,9 @@ class SessionStore {
 
   dispatchHandler(action) {
     switch(action.type) {
+      case UserActions.LOGIN_USER:
+        this.loginUser(action);
+        break;
       case RoomActions.ROOM_FILTER:
         this.getSession().set('roomFilter', action.filter);
         break;
@@ -62,6 +74,16 @@ class SessionStore {
     }
   }
 
+  loginUser(action) {
+    dispatcher.waitFor([userStore.dispatchToken]);
+    this.getSession().set('userName', action.name);
+    if (action.remember) {
+      localStorage.setItem('name', action.name);
+    } else {
+      localStorage.removeItem('name');
+    }
+  }
+
   setRoom(action) {
     var room = action.roomId ? roomStore.getRooms().get(action.roomId) : action.room;
     this.getSession().set('activeRoom', room);
@@ -69,7 +91,9 @@ class SessionStore {
 
   getSession() {
     if (!this.session) {
-      this.session = new SessionModel();
+      this.session = new SessionModel({
+        userName: localStorage.getItem('name')
+      });
     }
     return this.session;
   }
