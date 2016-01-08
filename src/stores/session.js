@@ -57,6 +57,9 @@ class SessionStore {
       case UserActions.LOGIN_USER:
         this.loginUser(action);
         break;
+      case UserActions.LOGOUT_USER:
+        localStorage.removeItem('userName');
+        break;
       case RoomActions.ROOM_FILTER:
         this.getSession().set('roomFilter', action.filter);
         break;
@@ -78,9 +81,9 @@ class SessionStore {
     dispatcher.waitFor([userStore.dispatchToken]);
     this.getSession().set('userName', action.name);
     if (action.remember) {
-      localStorage.setItem('name', action.name);
+      localStorage.setItem('userName', action.name);
     } else {
-      localStorage.removeItem('name');
+      localStorage.removeItem('userName');
     }
   }
 
@@ -92,7 +95,7 @@ class SessionStore {
   getSession() {
     if (!this.session) {
       this.session = new SessionModel({
-        userName: localStorage.getItem('name')
+        userName: localStorage.getItem('userName')
       });
     }
     return this.session;

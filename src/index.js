@@ -24,9 +24,17 @@ var router = new Router();
 /*eslint-enable no-unused-vars*/
 
 var dispatchHandler = function(action) {
-  dispatcher.waitFor([userStore.dispatchToken]);
-  if (action.type === UserActions.LOGIN_USER) {
-    startApp();
+  switch (action.type) {
+    case UserActions.LOGIN_USER:
+      dispatcher.waitFor([userStore.dispatchToken]);
+      startApp();
+      break;
+    case UserActions.LOGOUT_USER:
+      dispatcher.waitFor([sessionStore.dispatchToken]);
+      location.reload();
+      break;
+    default:
+      // do nothing
   }
 };
 

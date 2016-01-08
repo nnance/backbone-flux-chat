@@ -1,16 +1,21 @@
 import React from 'react';
-import room_actions from '../actions/room';
-import user_actions from '../actions/user';
+import roomActions from '../actions/room';
+import userActions from '../actions/user';
 
 export default class Header extends React.Component {
   showRooms(e) {
     e.preventDefault();
-    room_actions.showRooms();
+    roomActions.showRooms();
   }
 
   showUsers(e) {
     e.preventDefault();
-    user_actions.showUsers();
+    userActions.showUsers();
+  }
+
+  logout(e) {
+    e.preventDefault();
+    userActions.logoutUser();    
   }
 
   render() {
@@ -26,15 +31,19 @@ export default class Header extends React.Component {
           <div className="navbar-collapse collapse" id="navbar">
               <ul className="nav navbar-nav">
                   <li>
-                      <a aria-expanded="false" role="button" href="#" onClick={this.showRooms.bind(this)}> Rooms</a>
+                      <a aria-expanded="false" role="button" href="#" onClick={this.showRooms.bind(this)}>
+                        Rooms
+                      </a>
                   </li>
                   <li>
-                      <a aria-expanded="false" role="button" href="#" onClick={this.showUsers.bind(this)}> Users</a>
+                      <a aria-expanded="false" role="button" href="#" onClick={this.showUsers.bind(this)}>
+                        Users
+                      </a>
                   </li>
               </ul>
               <ul className="nav navbar-top-links navbar-right">
                   <li>
-                      <a href="login.html">
+                      <a href="#" onClick={this.logout}>
                           <i className="fa fa-sign-out"></i> Log out
                       </a>
                   </li>
