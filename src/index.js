@@ -6,7 +6,6 @@ import React from 'react';
 /*eslint-enable no-unused-vars*/
 import ReactDOM from 'react-dom';
 import Backbone from 'backbone';
-// import io from 'socket.io-client';
 
 // styles
 import '../styles/index.scss';
@@ -27,6 +26,4 @@ Promise
   .all([roomStore.fetch(), userStore.fetch()])
   .then(() => {
     Backbone.history.start({ pushState: true });
-    // var socket = io();
-    // socket.on('connect', () => console.log('connected'));
   });

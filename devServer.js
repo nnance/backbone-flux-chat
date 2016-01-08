@@ -27,7 +27,7 @@ app.use('/img', express.static('img'));
 
 // load dev routes for dev end points
 app.use(require('body-parser').json());
-devRoutes.expressRoutes(app);
+devRoutes.expressRoutes(app, io);
 
 // if no other routes match serve index by default
 app.get('*', function(req, res) {

@@ -1,5 +1,7 @@
 import Backbone from 'backbone';
 import dispatcher from '../dispatcher';
+import io from 'socket.io-client';
+
 import sessionStore from './session';
 import userStore from './user';
 import RoomActions from '../actions/room';
@@ -40,6 +42,7 @@ class ChatCollection extends Backbone.Collection {
 class ChatStore {
   constructor() {
     this.dispatchToken = dispatcher.register(this.dispatchHandler.bind(this));
+    io().on('chats:added', (msg) => this.getChats().add(msg));
   }
 
   dispatchHandler(action) {
@@ -62,7 +65,7 @@ class ChatStore {
       user: userStore.getUsers().at(0).id,
       room: sessionStore.getSession().activeRoom.id
     };
-    this.getChats().add(msg);
+    this.getChats().create(msg, {wait: true});
   }
 
   filteredByUser(filter) {

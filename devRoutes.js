@@ -2,11 +2,12 @@ var rooms = require('./test/stores/data/room').rooms;
 var users = require('./test/stores/data/user').users;
 var chats = require('./test/stores/data/chat').chats;
 
-var expressRoutes = function(app) {
+var expressRoutes = function(app, io) {
   app.get('/api/rooms', (req, res) => res.send(rooms));
   app.get('/api/users', (req, res) => res.send(users));
   app.get('/api/chats', (req, res) => res.send(chats.filter((chat) => chat.room == req.query.room)));
   app.post('/api/rooms', addRoom);
+  app.post('/api/chats', addChat.bind(io));
 };
 
 var ioRoutes = function(io) {
@@ -28,6 +29,14 @@ var addRoom = function(req, res, next) {
   rooms.push(room);
   res.send(room);
 };
+
+var addChat = function(req, res, next) {
+  var chat = req.body;
+  chat.id = nextId(chats);
+  chats.push(chat);
+  res.send(chat);
+  this.emit('chats:added', chat);
+}
 
 module.exports = {
   expressRoutes: expressRoutes,
