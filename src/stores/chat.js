@@ -1,10 +1,9 @@
 import Backbone from 'backbone';
 import dispatcher from '../dispatcher';
-import io from 'socket.io-client';
 
+import RoomActions from '../actions/room';
 import sessionStore from './session';
 import userStore from './user';
-import RoomActions from '../actions/room';
 
 class ChatModel extends Backbone.Model {
   get date() {
@@ -42,7 +41,6 @@ class ChatCollection extends Backbone.Collection {
 class ChatStore {
   constructor() {
     this.dispatchToken = dispatcher.register(this.dispatchHandler.bind(this));
-    io().on('chats:added', (msg) => this.getChats().add(msg));
   }
 
   dispatchHandler(action) {
@@ -53,6 +51,9 @@ class ChatStore {
       case RoomActions.ROOM_TRANSITION:
         dispatcher.waitFor([sessionStore.dispatchToken]);
         this.getChats().fetch({data: {room: sessionStore.getSession().activeRoom.id}});
+        break;
+      case RoomActions.RECEIVED_MSG:
+        this.getChats().add(action.msg);
         break;
       default:
         // do nothing

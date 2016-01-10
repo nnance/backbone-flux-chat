@@ -8,6 +8,7 @@ const roomStartChat = 'ROOM_START_CHAT';
 const roomAdd = 'ROOM_ADD';
 const roomTransition = 'ROOM_TRANSITION';
 const addChatMessage = 'ADD_CHAT_MSG';
+const receivedMessage = 'RECEIVED_MSG';
 
 module.exports = {
   SHOW_ROOMS: showRooms,
@@ -17,6 +18,7 @@ module.exports = {
   ROOM_ADD: roomAdd,
   ROOM_TRANSITION: roomTransition,
   ADD_CHAT_MSG: addChatMessage,
+  RECEIVED_MSG: receivedMessage,
 
   showRooms: function() {
     Backbone.history.navigate('', {trigger: true});
@@ -62,6 +64,13 @@ module.exports = {
   addChatMessage: function(msg) {
     dispatcher.dispatch({
       type: addChatMessage,
+      msg: msg
+    });
+  },
+
+  receivedMessage: function(msg) {
+    dispatcher.dispatch({
+      type: receivedMessage,
       msg: msg
     });
   }
