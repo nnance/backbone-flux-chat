@@ -1,6 +1,8 @@
 import Backbone from 'backbone';
 import dispatcher from '../dispatcher';
+
 import UserActions from '../actions/user';
+import sessionStore from './session';
 
 class UserModel extends Backbone.Model {
   defaults() {
@@ -67,14 +69,24 @@ class UserStore {
       case UserActions.LOGIN_USER:
         this.login(action);
         break;
-
+      case UserActions.USER_CONNECTED:
+        this.getActiveUser().save({socketId: action.socketId});
+        break;
       default:
         // do nothing
     }
   }
 
   login(action) {
-    this.getUsers().create({name: action.name}, {wait: true});
+    this.activeUser = this.getUsers().create({name: action.name}, {wait: true});
+  }
+
+  getActiveUser() {
+    var userName = localStorage.getItem('userName');
+    if (!this.activeUser && userName) {
+      this.activeUser = this.getUsers().findWhere({name: userName});
+    }
+    return this.activeUser;
   }
 
   fetch() {

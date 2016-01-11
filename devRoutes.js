@@ -9,11 +9,12 @@ var expressRoutes = function(app, io) {
   app.post('/api/rooms', addRoom);
   app.post('/api/users', addUser.bind(io));
   app.post('/api/chats', addChat.bind(io));
+  app.put('/api/users/:id', updateUser.bind(io));
 };
 
 var ioRoutes = function(io) {
   io.on('connection', (socket, args) => {
-    socket.on('disconnect', (socket, args) => console.log('user disconnected'));
+    socket.on('disconnect', (socket, args) => setUser(findUser('socketId', socket.id), {online: false}, io));
     socket.on('user:connecttion', (id, user) => user.socket = socket);
     console.log('user connected with id: ' + socket.id);
   });
@@ -33,19 +34,38 @@ var addRoom = function(req, res, next) {
 
 var addUser = function(req, res, next) {
   var user = req.body;
-  user.id = nextId(users);
-  user.online = true;
-  existing = users.filter((u) => u.name === user.name);
-  if (existing.length > 0) {
-    user = existing[0];
-    user.online = true;
-    this.emit('users:changed', user);
+  existing = findUser('name', user.name);
+  if (existing) {
+    setUser(user, {online: true}, this);
   } else {
+    user.id = nextId(users);
+    user.online = true;
     users.push(user);
     this.emit('users:added', user);
   }
   res.send(user);
 };
+
+var findUser = function(property, value) {
+  var existing = users.filter((u) => u[property] === value);
+  return (existing.length > 0) ? existing[0] : null;
+}
+
+var updateUser = function(req, res, next) {
+  var user = req.body;
+  console.dir(user);
+  var existing = findUser('name', user.name);
+  if (existing) {
+    // setUser(existing, user, this);
+  }
+  res.send(user);
+}
+
+var setUser = function(user, props, io) {
+  user = Object.assign(user, props);
+  io.emit('users:change', user);
+  return user;
+}
 
 var addChat = function(req, res, next) {
   var chat = req.body;

@@ -61,8 +61,6 @@ class SessionStore {
       case UserActions.LOGOUT_USER:
         localStorage.removeItem('userName');
         break;
-      case UserActions.USER_CONNECTED:
-        this.getSession().set('socketId', action.socketId);
       case RoomActions.ROOM_FILTER:
         this.getSession().set('roomFilter', action.filter);
         break;
