@@ -50,15 +50,17 @@ var dispatchHandler = function(action) {
 
 // start the app by initializing stores and setup listener for socket events
 var startApp = function() {
-  var manager = io();
-  manager.on('connect', () => UserActions.userConnected(manager.id));
-  manager.on('chats:added', (msg) => RoomActions.receivedMessage(msg));
-
   // prefetch data before starting the router.  this will also allow for
   // signing on the user when needed
   Promise
   .all([roomStore.fetch(), userStore.fetch()])
   .then(() => {
+    var manager = io();
+    manager.on('connect', () => UserActions.userConnected(manager.id));
+    manager.on('chats:added', (msg) => RoomActions.receivedMessage(msg));
+    manager.on('users:added', (user) => UserActions.userReceived(user));
+    manager.on('users:updated', (user) => UserActions.userUpdated(user));
+
     Backbone.history.start({ pushState: true });
   });
 };

@@ -69,8 +69,17 @@ class UserStore {
       case UserActions.LOGIN_USER:
         this.login(action);
         break;
+      case UserActions.LOGOUT_USER:
+        this.logout(action);
+        break;
       case UserActions.USER_CONNECTED:
-        this.getActiveUser().save({socketId: action.socketId});
+        this.getActiveUser().save({online: true, socketId: action.socketId});
+        break;
+      case UserActions.USER_RECEIVED:
+        this.getUsers().add(action.user, {merge: true});
+        break;
+      case UserActions.USER_UPDATED:
+        this.getUsers().add(action.user, {merge: true});
         break;
       default:
         // do nothing
@@ -78,11 +87,18 @@ class UserStore {
   }
 
   login(action) {
-    this.activeUser = this.getUsers().create({name: action.name}, {wait: true});
+    this.userName = action.name;
+    this.getUsers().create({name: this.userName}, {wait: true});
+  }
+
+  logout(action) {
+    if (this.activeUser) {
+      this.activeUser.save({online: false});
+    }
   }
 
   getActiveUser() {
-    var userName = localStorage.getItem('userName');
+    var userName = this.userName || localStorage.getItem('userName');
     if (!this.activeUser && userName) {
       this.activeUser = this.getUsers().findWhere({name: userName});
     }

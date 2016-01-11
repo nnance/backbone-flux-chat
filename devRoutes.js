@@ -14,9 +14,13 @@ var expressRoutes = function(app, io) {
 
 var ioRoutes = function(io) {
   io.on('connection', (socket, args) => {
-    socket.on('disconnect', (socket, args) => setUser(findUser('socketId', socket.id), {online: false}, io));
-    socket.on('user:connecttion', (id, user) => user.socket = socket);
-    console.log('user connected with id: ' + socket.id);
+    var socketId = socket.id.substring(2);
+    socket.on('disconnect', () => {
+      console.log('user disconnected id: ' + socketId);
+      var user = findUser('socketId', socketId);
+      setUser(user, {online: false}, io);
+    });
+    console.log('user connected id: ' + socketId);
   });
 };
 
@@ -36,7 +40,7 @@ var addUser = function(req, res, next) {
   var user = req.body;
   existing = findUser('name', user.name);
   if (existing) {
-    setUser(user, {online: true}, this);
+    setUser(existing, {online: true}, this);
   } else {
     user.id = nextId(users);
     user.online = true;
@@ -53,18 +57,19 @@ var findUser = function(property, value) {
 
 var updateUser = function(req, res, next) {
   var user = req.body;
-  console.dir(user);
   var existing = findUser('name', user.name);
   if (existing) {
-    // setUser(existing, user, this);
+    setUser(existing, user, this);
   }
   res.send(user);
 }
 
 var setUser = function(user, props, io) {
-  user = Object.assign(user, props);
-  io.emit('users:change', user);
-  return user;
+  if (user) {
+    user = Object.assign(user, props);
+    io.emit('users:updated', user);
+    return user;
+  }
 }
 
 var addChat = function(req, res, next) {

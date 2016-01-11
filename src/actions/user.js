@@ -5,7 +5,9 @@ const showUsers = 'SHOW_USERS';
 const filterUsers = 'FILTER_USERS';
 const loginUser = 'LOGIN_USER';
 const logoutUser = 'LOGOUT_USER';
-const userConnected = 'USER_CONNECTED'
+const userConnected = 'USER_CONNECTED';
+const userReceived = 'USER_RECEIVED';
+const userUpdated = 'USER_UPDATED';
 
 module.exports = {
   SHOW_USERS: showUsers,
@@ -13,6 +15,8 @@ module.exports = {
   LOGIN_USER: loginUser,
   LOGOUT_USER: logoutUser,
   USER_CONNECTED: userConnected,
+  USER_RECEIVED: userReceived,
+  USER_UPDATED: userUpdated,
 
   showUsers: function() {
     Backbone.history.navigate('/user', {trigger: true});
@@ -46,6 +50,20 @@ module.exports = {
     dispatcher.dispatch({
       type: userConnected,
       socketId: socketId
+    });
+  },
+
+  userReceived: function(user) {
+    dispatcher.dispatch({
+      type: userReceived,
+      user: user
+    });
+  },
+
+  userUpdated: function(user) {
+    dispatcher.dispatch({
+      type: userUpdated,
+      user: user
     });
   }
 
