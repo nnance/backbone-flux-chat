@@ -36,15 +36,15 @@ var router = new Router();
 var dispatchHandler = function(action) {
   switch (action.type) {
     case UserActions.LOGIN_USER:
-    dispatcher.waitFor([userStore.dispatchToken]);
-    startApp();
-    break;
+      dispatcher.waitFor([userStore.dispatchToken]);
+      startApp();
+      break;
     case UserActions.LOGOUT_USER:
-    dispatcher.waitFor([sessionStore.dispatchToken]);
-    location.reload();
-    break;
+      dispatcher.waitFor([sessionStore.dispatchToken]);
+      location.reload();
+      break;
     default:
-    // do nothing
+      // do nothing
   }
 };
 
