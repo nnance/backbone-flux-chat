@@ -48,3 +48,15 @@ The majority of the interesting code in project is in the src directory.  Below 
 * lib - Utility classes to more easily integrate Backbone with React.
 
 * stores - These are each singletons the manage state for each domain of the application.  They also manage the Backbone models and collections they need to synchronize state with the server.
+
+### Getting Started
+The entry point of the client application is in src/index.js where you will find the application initialization code where the following setup happens:
+* The application initializes the stores by syncing with the server
+* The connection to socket.io is made and the listeners are established
+* The application container (heaer, footer and body) are rendered.
+
+The src/router.js is the Backbone router where you will find:
+* The route configuration
+* How each of the main sections of the application is rendered.  
+
+This should lead you to the rest of components of the system.

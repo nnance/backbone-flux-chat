@@ -20,7 +20,10 @@ export default class Router extends Backbone.Router {
   }
 
   getBody() {
-    return document.getElementById('body');
+    if (!this._body) {
+      this._body = document.getElementById('body');
+    }
+    return !this._body;
   }
 
   showHome() {
