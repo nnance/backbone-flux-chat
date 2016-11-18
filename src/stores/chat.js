@@ -27,19 +27,15 @@ class ChatModel extends Backbone.Model {
   }
 }
 
-class ChatCollection extends Backbone.Collection {
-  get model() {
-    return ChatModel;
-  }
+class ChatStore extends Backbone.Collection {
+  constructor(models, options) {
+    let settings = {
+      model: ChatModel,
+      url: '/api/chats'
+    };
+    Object.assign(options, settings, options || {});
+    super(models, options);
 
-  get url() {
-    return '/api/chats';
-  }
-
-}
-
-class ChatStore {
-  constructor() {
     this.dispatchToken = dispatcher.register(this.dispatchHandler.bind(this));
   }
 
@@ -50,10 +46,10 @@ class ChatStore {
         break;
       case RoomActions.ROOM_TRANSITION:
         dispatcher.waitFor([sessionStore.dispatchToken]);
-        this.getChats().fetch({data: {room: sessionStore.getSession().activeRoom.id}});
+        this.fetch({data: {room: sessionStore.getSession().activeRoom.id}});
         break;
       case RoomActions.RECEIVED_MSG:
-        this.getChats().add(action.msg);
+        this.add(action.msg);
         break;
       default:
         // do nothing
@@ -67,27 +63,15 @@ class ChatStore {
       user: userStore.filteredByName(session.userName)[0].id,
       room: session.activeRoom.id
     };
-    this.getChats().create(msg, {wait: true});
+    this.create(msg, {wait: true});
   }
 
   filteredByUser(filter) {
     if (!filter || filter.length === 0) {
-      return this.getChats().models;
+      return this.models;
     } else {
-      return this.getChats().filter((item) => item.user === filter);
+      return this.filter((item) => item.user === filter);
     }
-  }
-
-  getChats() {
-    if (!this.chats) {
-      this.chats = new ChatCollection();
-    }
-    return this.chats;
-  }
-
-  clear() {
-    this.chats.off();
-    this.chats = null;
   }
 }
 

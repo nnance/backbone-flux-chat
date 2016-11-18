@@ -13,7 +13,7 @@ export default class ChatDiscussion extends React.Component {
     return (
       <div className="chat-discussion" ref="discussion">
         {
-          this.props.chatStore.getChats().map((chat, index) => {
+          this.props.chatStore.map((chat, index) => {
             var user = this.props.userStore.getUsers().get(chat.user);
             return (
               <div className={'chat-message ' + (index % 2 ? 'right' : 'left')} key={chat.id}>

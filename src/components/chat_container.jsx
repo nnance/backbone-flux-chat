@@ -11,7 +11,7 @@ import ChatMessage from './chat_message';
 
 class Container extends React.Component {
   bindings() {
-    return [userStore.getUsers(), chatStore.getChats()];
+    return [userStore.getUsers(), chatStore];
   }
 
   render() {

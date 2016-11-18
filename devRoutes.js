@@ -38,7 +38,7 @@ var addRoom = function(req, res, next) {
 
 var addUser = function(req, res, next) {
   var user = req.body;
-  existing = findUser('name', user.name);
+  var existing = findUser('name', user.name);
   if (existing) {
     setUser(existing, {online: true}, this);
   } else {
